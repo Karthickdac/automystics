@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code } from "lucide-react";
+import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Server, Cloud, Smartphone, Paintbrush, Cog, Workflow, Settings, Users, BookOpen, Briefcase, FileText, HeartHandshake } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,115 +12,147 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-const products = [
-  {
-    id: "chit-fund",
-    title: "Chit Fund Management",
-    description: "Comprehensive digital platform for finance companies",
-    icon: Building2
-  },
-  {
-    id: "school-management",
-    title: "School Management",
-    description: "End-to-end administration for modern schools",
-    icon: GraduationCap
-  },
-  {
-    id: "kalvicore",
-    title: "KalviCore",
-    description: "Advanced College Management System",
-    icon: GraduationCap
-  },
-  {
-    id: "kural-ai",
-    title: "Kural AI",
-    description: "Intelligent voice automation",
-    icon: Mic
-  },
-  {
-    id: "auto-algo",
-    title: "Auto Algo Trading",
-    description: "High-frequency quantitative trading platform",
-    icon: LineChart
-  },
-  {
-    id: "scada",
-    title: "SCADA Monitoring",
-    description: "Industrial monitoring for solar power",
-    icon: Sun
-  },
-  {
-    id: "cctv",
-    title: "CCTV AutoMonitoring",
-    description: "Intelligent anomaly detection",
-    icon: Camera
-  },
-  {
-    id: "custom",
-    title: "Custom Software",
-    description: "Bespoke enterprise applications",
-    icon: Code
-  }
+const services = [
+  { id: "custom-software", title: "Custom Software", desc: "Bespoke enterprise architecture", icon: Code },
+  { id: "web-dev", title: "Web Application", desc: "Scalable cloud-native apps", icon: Server },
+  { id: "mobile-dev", title: "Mobile App", desc: "Native & cross-platform", icon: Smartphone },
+  { id: "ai-integration", title: "AI Integration", desc: "Intelligent workflow automation", icon: Workflow },
+  { id: "cloud-devops", title: "Cloud & DevOps", desc: "Infrastructure optimization", icon: Cloud },
+  { id: "ui-ux", title: "UI/UX Design", desc: "User-centric interface crafting", icon: Paintbrush },
+  { id: "api-integration", title: "API Integration", desc: "Seamless system connectivity", icon: Settings },
+  { id: "maintenance", title: "Maintenance", desc: "24/7 support & monitoring", icon: Cog },
 ];
+
+const products = [
+  { id: "chit-fund", title: "Chit Fund Management", desc: "Digital platform for finance", icon: Building2 },
+  { id: "school-management", title: "School Management", desc: "End-to-end administration", icon: GraduationCap },
+  { id: "kalvicore", title: "KalviCore", desc: "Advanced College Management", icon: GraduationCap },
+  { id: "kural-ai", title: "Kural AI", desc: "Intelligent voice automation", icon: Mic },
+  { id: "auto-algo", title: "Auto Algo Trading", desc: "High-frequency trading", icon: LineChart },
+  { id: "scada", title: "SCADA Monitoring", desc: "Industrial solar monitoring", icon: Sun },
+  { id: "cctv", title: "CCTV AutoMonitoring", desc: "Intelligent anomaly detection", icon: Camera },
+  { id: "custom", title: "Custom Solutions", desc: "Bespoke applications", icon: Code }
+];
+
+const industries = [
+  { id: "finance", title: "Finance & Banking", desc: "Secure fintech platforms", icon: Building2 },
+  { id: "education", title: "Education", desc: "Institution management", icon: GraduationCap },
+  { id: "manufacturing", title: "Manufacturing", desc: "Industry 4.0 automation", icon: Cog },
+  { id: "energy", title: "Energy & Utilities", desc: "Grid & asset monitoring", icon: Sun },
+  { id: "healthcare", title: "Healthcare", desc: "Compliance & data management", icon: HeartHandshake },
+  { id: "retail", title: "Retail", desc: "E-commerce & inventory", icon: Smartphone },
+  { id: "logistics", title: "Logistics", desc: "Supply chain optimization", icon: Workflow },
+  { id: "real-estate", title: "Real Estate", desc: "Property tech solutions", icon: Building2 },
+];
+
+const solutions = [
+  { id: "enterprise-automation", title: "Enterprise Automation", desc: "Workflow optimization", icon: Workflow },
+  { id: "ai-voice", title: "AI Voice Agents", desc: "Conversational interfaces", icon: Mic },
+  { id: "algo-trading", title: "Algorithmic Trading", desc: "Quantitative execution", icon: LineChart },
+  { id: "surveillance", title: "Surveillance Intelligence", desc: "Video analytics", icon: Camera },
+  { id: "solar-monitoring", title: "Solar Plant Monitoring", desc: "IoT data collection", icon: Sun },
+  { id: "academic", title: "Academic Management", desc: "Student lifecyle", icon: GraduationCap },
+];
+
+const company = [
+  { id: "about", title: "About Us", desc: "Our mission & vision", icon: Users },
+  { id: "process", title: "Our Process", desc: "How we build", icon: Workflow },
+  { id: "careers", title: "Careers", desc: "Join our team", icon: Briefcase },
+  { id: "case-studies", title: "Case Studies", desc: "Client success stories", icon: BookOpen },
+  { id: "blog", title: "Blog", desc: "Insights & news", icon: FileText },
+  { id: "partners", title: "Partners", desc: "Our ecosystem", icon: HeartHandshake },
+];
+
+const DropdownGrid = ({ items, linkPrefix }: { items: any[], linkPrefix: string }) => (
+  <div className="w-[800px] p-6 grid grid-cols-2 gap-4 bg-white border border-border shadow-2xl rounded-2xl">
+    {items.map((item) => (
+      <NavigationMenuLink asChild key={item.id}>
+        <Link href={`${linkPrefix}#${item.id}`} className="group p-3 rounded-xl hover:bg-muted transition-colors flex gap-4 items-start outline-none">
+          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+            <item.icon className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+              {item.title}
+            </div>
+            <div className="text-sm text-muted-foreground line-clamp-1">
+              {item.desc}
+            </div>
+          </div>
+        </Link>
+      </NavigationMenuLink>
+    ))}
+  </div>
+);
 
 export function Navbar() {
   const [location] = useLocation();
-
   const isHome = location === "/";
-  const isProducts = location === "/products";
   const isContact = location === "/contact";
 
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-6xl">
         <div className="bg-[#0B1426] text-white rounded-full shadow-2xl shadow-primary/10 border border-white/10 flex items-center justify-between h-16 px-4 md:px-6">
-          <Link href="/" className="flex items-center gap-3 relative z-10 outline-none">
+          <Link href="/" className="flex items-center gap-3 relative z-10 outline-none shrink-0">
             <div className="bg-white p-1 rounded-full w-9 h-9 flex items-center justify-center overflow-hidden shrink-0">
               <img src="/logo.jpeg" alt="Automystics Logo" className="w-7 h-7 object-contain mix-blend-multiply" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-white hidden sm:block">Automystics</span>
+            <span className="text-lg font-bold tracking-tight text-white hidden xl:block">Automystics</span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center justify-center flex-1">
+          <div className="hidden lg:flex items-center justify-center flex-1 overflow-hidden">
             <NavigationMenu>
-              <NavigationMenuList className="gap-1">
+              <NavigationMenuList className="gap-0.5">
                 <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link href="/" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isHome ? "text-white bg-white/5" : "text-white/70"}`}>
-                      Home
-                    </Link>
-                  </NavigationMenuLink>
+                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                    Services
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <DropdownGrid items={services} linkPrefix="/#" />
+                  </NavigationMenuContent>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={`h-10 rounded-full px-4 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 ${isProducts ? "text-white bg-white/5" : "text-white/70"}`}>
+                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[800px] p-6 grid grid-cols-2 gap-4 bg-[#0B1426] border border-white/10 rounded-2xl shadow-2xl">
-                      {products.map((product) => (
-                        <Link key={product.id} href={`/products#${product.id}`} className="group p-3 rounded-xl hover:bg-white/5 transition-colors flex gap-4 items-start outline-none">
-                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                            <product.icon className="w-5 h-5 text-primary" />
-                          </div>
-                          <div>
-                            <div className="font-semibold text-white mb-1 group-hover:text-primary transition-colors">
-                              {product.title}
-                            </div>
-                            <div className="text-sm text-white/60 line-clamp-1">
-                              {product.description}
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
+                    <DropdownGrid items={products} linkPrefix="/products#" />
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                    Industries
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <DropdownGrid items={industries} linkPrefix="/#" />
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                    Solutions
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <DropdownGrid items={solutions} linkPrefix="/#" />
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                    Company
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <DropdownGrid items={company} linkPrefix="/#" />
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "text-white bg-white/5" : "text-white/70"}`}>
+                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-3 py-2 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "text-white bg-white/5" : "text-white/80"}`}>
                       Contact Us
                     </Link>
                   </NavigationMenuLink>
@@ -153,6 +185,17 @@ export function Navbar() {
                   </Link>
                   
                   <div className="space-y-4">
+                    <div className="text-lg font-medium text-white">Services</div>
+                    <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
+                      {services.map(p => (
+                        <Link key={p.id} href={`/#${p.id}`} className="text-white/70 hover:text-white text-sm">
+                          {p.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
                     <div className="text-lg font-medium text-white">Products</div>
                     <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
                       {products.map(p => (
@@ -163,8 +206,19 @@ export function Navbar() {
                     </div>
                   </div>
 
+                  <div className="space-y-4">
+                    <div className="text-lg font-medium text-white">Industries</div>
+                    <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
+                      {industries.map(p => (
+                        <Link key={p.id} href={`/#${p.id}`} className="text-white/70 hover:text-white text-sm">
+                          {p.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
                   <Link href="/contact" className={`text-lg font-medium transition-colors ${isContact ? "text-white" : "text-white/70"}`}>
-                    Contact
+                    Contact Us
                   </Link>
                   
                   <div className="h-px bg-white/10 w-full my-2"></div>

@@ -6,7 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { 
   Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code,
-  Zap, Shield, Clock, ArrowUpRight, CheckCircle2, Factory, Database
+  Zap, Shield, Clock, ArrowUpRight, CheckCircle2, Factory, Database,
+  Activity, Users
 } from "lucide-react";
 
 const products = [
@@ -22,30 +23,41 @@ const products = [
 
 export function Home() {
   return (
-    <div className="relative bg-background">
+    <div className="relative">
       <SEO 
         title="Automystics - Enterprise AI & Automation"
         description="We build complex software faster than anyone else. Enterprise grade, 100% custom built."
         canonical="/"
       />
 
-      <div className="bg-glow-top-right" />
-      <div className="bg-glow-bottom-left" />
-
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 md:pt-56 md:pb-32 overflow-hidden bg-grid-pattern">
+      <section className="relative pt-40 pb-20 md:pt-56 md:pb-32 overflow-hidden bg-transparent">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-primary/15 via-primary/5 to-transparent pointer-events-none opacity-80" />
+        
+        {/* Floating decorative orbs */}
+        <motion.div 
+          animate={{ y: [0, -20, 0], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/20 rounded-full blur-3xl pointer-events-none" 
+        />
+        <motion.div 
+          animate={{ y: [0, 30, 0], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-1/3 right-1/4 w-48 h-48 bg-blue-400/20 rounded-full blur-3xl pointer-events-none" 
+        />
+
         <div className="container relative z-10 mx-auto px-4 text-center max-w-5xl">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold mb-8 uppercase tracking-wide">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-primary/20 text-primary text-sm font-bold mb-8 uppercase tracking-wide shadow-sm">
               <span className="text-xl leading-none -mt-1">●</span>
               Engineering The Future
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-8 relative">
               We Build Software, <br/>
               <span className="text-primary relative inline-block">
                 Faster Than Anyone.
@@ -67,7 +79,7 @@ export function Home() {
                 </Button>
               </Link>
               <Link href="/products">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full h-14 px-8 text-lg border-border hover:bg-muted font-semibold group text-foreground bg-white">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full h-14 px-8 text-lg border-card-border hover:bg-white font-semibold group text-foreground bg-white/50 backdrop-blur-sm">
                   Explore Products
                   <ArrowUpRight className="w-5 h-5 ml-2 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </Button>
@@ -75,7 +87,7 @@ export function Home() {
             </div>
 
             {/* Trust Strip */}
-            <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-semibold text-muted-foreground border border-border py-6 px-4 bg-white/50 rounded-3xl backdrop-blur-sm max-w-4xl mx-auto shadow-sm">
+            <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-semibold text-muted-foreground border border-card-border py-6 px-4 bg-white/60 rounded-3xl backdrop-blur-md max-w-4xl mx-auto shadow-sm">
               <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-primary" /> Fastest Delivery</div>
               <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-border" />
               <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-primary" /> Enterprise Grade</div>
@@ -88,11 +100,33 @@ export function Home() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-24 md:py-32 relative bg-white border-t border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Stats Dark Accent Band */}
+      <section className="py-16 bg-[#0B1426] border-y border-primary/20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+        <div className="container relative z-10 mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10">
+            {[
+              { label: "Projects Delivered", value: "150+", icon: CheckCircle2 },
+              { label: "Lines of Code", value: "2M+", icon: Code },
+              { label: "System Uptime", value: "99.9%", icon: Activity },
+              { label: "Enterprise Clients", value: "45+", icon: Users }
+            ].map((stat, i) => (
+              <div key={i} className="text-center px-4">
+                <stat.icon className="w-6 h-6 text-primary mx-auto mb-3 opacity-80" />
+                <div className="text-3xl md:text-4xl font-extrabold text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-primary font-semibold uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid (Section A: light blue-gray) */}
+      <section id="services" className="py-24 md:py-32 relative bg-[#EBEFF7]">
+        <div className="absolute inset-0 bg-diagonal-pattern opacity-30" />
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 uppercase tracking-wide">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-primary border border-card-border text-sm font-bold mb-6 uppercase tracking-wide shadow-sm">
               <span className="text-xl leading-none -mt-1">●</span> OUR EXPERTISE
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-6 tracking-tight">Enterprise solutions, <span className="text-primary">engineered to scale.</span></h2>
@@ -108,9 +142,9 @@ export function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Card className="h-full bg-[#F7F8FA] border-border hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 group cursor-pointer rounded-3xl overflow-hidden shadow-sm">
+                <Card className="h-full bg-white card-hover-effect rounded-3xl overflow-hidden cursor-pointer group">
                   <CardContent className="p-8">
-                    <div className="w-12 h-12 rounded-xl bg-white shadow-sm border border-border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-background border border-card-border flex items-center justify-center mb-6 group-hover:bg-primary/5 transition-colors duration-300">
                       <product.icon className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight">{product.title}</h3>
@@ -126,16 +160,16 @@ export function Home() {
         </div>
       </section>
 
-      {/* Industries */}
-      <section className="py-24 md:py-32 bg-[#F7F8FA] border-y border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Industries (Section B: soft gradient panel) */}
+      <section id="industries" className="py-24 md:py-32 relative bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-[#F4F6FB] to-[#EBEFF7]">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 uppercase tracking-wide">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-card-border text-primary text-sm font-bold mb-6 uppercase tracking-wide shadow-sm">
                 <span className="text-xl leading-none -mt-1">●</span> SECTORS
               </div>
               <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-6 tracking-tight">Industries We <span className="text-primary">Power</span></h2>
@@ -151,7 +185,7 @@ export function Home() {
                   { name: "Enterprise", desc: "Complex workflow automation", icon: Database }
                 ].map((ind, i) => (
                   <div key={i} className="flex gap-4">
-                    <div className="w-12 h-12 shrink-0 rounded-2xl bg-white border border-border shadow-sm flex items-center justify-center">
+                    <div className="w-12 h-12 shrink-0 rounded-2xl bg-white border border-card-border shadow-sm flex items-center justify-center">
                       <ind.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
@@ -167,25 +201,25 @@ export function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative rounded-[2.5rem] overflow-hidden border border-border aspect-square lg:aspect-[4/3] bg-white shadow-xl p-8 flex flex-col items-center justify-center"
+              className="relative rounded-[2.5rem] overflow-hidden border border-card-border aspect-square lg:aspect-[4/3] bg-white shadow-xl p-8 flex flex-col items-center justify-center group"
             >
-              <div className="absolute inset-0 bg-grid-pattern opacity-50" />
-              <div className="w-48 h-48 bg-primary/10 rounded-full blur-[80px] absolute" />
-              <div className="relative z-10 w-full h-full border border-border rounded-2xl bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-center p-8">
+              <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+              <div className="w-64 h-64 bg-primary/10 rounded-full blur-[80px] absolute group-hover:bg-primary/20 transition-colors duration-700" />
+              <div className="relative z-10 w-full h-full border border-card-border rounded-2xl bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-center p-8">
                 <div className="grid grid-cols-2 gap-4 w-full h-full">
-                  <div className="bg-white rounded-xl border border-border shadow-sm flex flex-col items-center justify-center p-4">
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4">
                      <LineChart className="w-10 h-10 text-primary mb-2" />
                      <div className="h-2 w-16 bg-muted rounded-full mt-2" />
                   </div>
-                  <div className="bg-white rounded-xl border border-border shadow-sm flex flex-col items-center justify-center p-4 mt-8">
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4 mt-8">
                      <Sun className="w-10 h-10 text-primary mb-2" />
                      <div className="h-2 w-16 bg-muted rounded-full mt-2" />
                   </div>
-                  <div className="bg-white rounded-xl border border-border shadow-sm flex flex-col items-center justify-center p-4 -mt-8">
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4 -mt-8">
                      <Mic className="w-10 h-10 text-primary mb-2" />
                      <div className="h-2 w-16 bg-muted rounded-full mt-2" />
                   </div>
-                  <div className="bg-white rounded-xl border border-border shadow-sm flex flex-col items-center justify-center p-4">
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4">
                      <Building2 className="w-10 h-10 text-primary mb-2" />
                      <div className="h-2 w-16 bg-muted rounded-full mt-2" />
                   </div>
@@ -196,11 +230,11 @@ export function Home() {
         </div>
       </section>
 
-      {/* Process / Why Choose Us */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Process / Why Choose Us (Section A: Off-white base) */}
+      <section className="py-24 md:py-32 bg-transparent relative">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 uppercase tracking-wide">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-primary border border-card-border text-sm font-bold mb-6 uppercase tracking-wide shadow-sm">
               <span className="text-xl leading-none -mt-1">●</span> WORKFLOW
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-foreground mb-6 tracking-tight">Our <span className="text-primary">Process</span></h2>
@@ -208,7 +242,7 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-border -translate-y-1/2" />
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-card-border -translate-y-1/2" />
             
             {[
               { num: "01", title: "Discover", desc: "Deep dive into requirements and architecture planning." },
@@ -222,7 +256,7 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative z-10 bg-white border border-border shadow-md rounded-3xl p-8 hover:border-primary/30 hover:shadow-xl transition-all"
+                className="relative z-10 bg-white border border-card-border shadow-sm rounded-3xl p-8 card-hover-effect"
               >
                 <div className="text-5xl font-extrabold text-primary/10 mb-6">{step.num}</div>
                 <h4 className="text-xl font-bold text-foreground mb-3">{step.title}</h4>

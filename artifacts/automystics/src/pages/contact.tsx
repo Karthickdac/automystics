@@ -28,14 +28,14 @@ export function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F8FA] relative pt-40 pb-24">
+    <div className="min-h-screen bg-transparent relative pt-40 pb-24">
       <SEO 
         title="Contact Us | Automystics"
         description="Get in touch with Automystics to discuss your custom software and AI automation needs."
         canonical="/contact"
       />
 
-      <div className="bg-glow-top-right" />
+      <div className="absolute top-0 right-0 w-full max-w-2xl h-[600px] bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
         <motion.div 
@@ -43,7 +43,7 @@ export function Contact() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 uppercase tracking-wide mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-card-border shadow-sm text-primary text-sm font-bold mb-6 uppercase tracking-wide mx-auto">
             <span className="text-xl leading-none -mt-1">●</span> GET IN TOUCH
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold text-foreground mb-6 tracking-tight">Let's Build The <span className="text-primary">Future.</span></h1>
@@ -60,8 +60,8 @@ export function Contact() {
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-7"
           >
-            <div className="bg-white border border-border rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-black/5 relative overflow-hidden">
-              <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+            <div className="bg-white border border-card-border rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-black/5 relative overflow-hidden card-hover-effect">
+              <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
               
               {isSuccess ? (
                 <div className="text-center py-20 relative z-10">
@@ -72,7 +72,7 @@ export function Contact() {
                   <p className="text-lg text-muted-foreground mb-10 max-w-md mx-auto">
                     Thank you for reaching out. A technical specialist will contact you shortly to discuss your project.
                   </p>
-                  <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full h-12 px-8 border-border text-foreground font-semibold bg-white hover:bg-muted">
+                  <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full h-12 px-8 border-card-border text-foreground font-semibold bg-white hover:bg-muted">
                     Send Another Message
                   </Button>
                 </div>
@@ -83,22 +83,22 @@ export function Contact() {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-3">
                       <Label htmlFor="firstName" className="text-foreground font-semibold ml-1">First Name</Label>
-                      <Input id="firstName" required className="bg-white border-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="John" />
+                      <Input id="firstName" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="John" />
                     </div>
                     <div className="space-y-3">
                       <Label htmlFor="lastName" className="text-foreground font-semibold ml-1">Last Name</Label>
-                      <Input id="lastName" required className="bg-white border-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Doe" />
+                      <Input id="lastName" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Doe" />
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <Label htmlFor="email" className="text-foreground font-semibold ml-1">Work Email</Label>
-                    <Input id="email" type="email" required className="bg-white border-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="john@company.com" />
+                    <Input id="email" type="email" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="john@company.com" />
                   </div>
 
                   <div className="space-y-3">
                     <Label htmlFor="company" className="text-foreground font-semibold ml-1">Company</Label>
-                    <Input id="company" className="bg-white border-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Acme Corp" />
+                    <Input id="company" className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Acme Corp" />
                   </div>
 
                   <div className="space-y-3">
@@ -106,7 +106,7 @@ export function Contact() {
                     <Textarea 
                       id="message" 
                       required 
-                      className="min-h-[160px] bg-white border-border focus-visible:ring-primary resize-none rounded-2xl p-4 text-lg shadow-sm" 
+                      className="min-h-[160px] bg-white border-card-border focus-visible:ring-primary resize-none rounded-2xl p-4 text-lg shadow-sm" 
                       placeholder="Tell us about the software you need..."
                     />
                   </div>
@@ -140,7 +140,7 @@ export function Contact() {
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-5 space-y-8"
           >
-            <div className="bg-white border border-border shadow-xl shadow-black/5 rounded-[2.5rem] p-10 text-center relative overflow-hidden">
+            <div className="bg-white border border-card-border shadow-xl shadow-black/5 rounded-[2.5rem] p-10 text-center relative overflow-hidden card-hover-effect">
               <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
               <div className="relative z-10">
                 <h2 className="text-3xl font-bold text-foreground mb-4 tracking-tight">Need it faster?</h2>
@@ -153,7 +153,7 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="bg-white border border-border shadow-lg rounded-[2.5rem] p-10">
+            <div className="bg-white border border-card-border shadow-lg rounded-[2.5rem] p-10 card-hover-effect">
               <h3 className="text-xl font-bold text-foreground mb-8 tracking-tight">Global Headquarters</h3>
               
               <div className="space-y-8">

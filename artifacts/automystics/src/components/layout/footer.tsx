@@ -5,17 +5,21 @@ import { Twitter, Linkedin, Github, Mail, MapPin, Phone, ArrowUpRight } from "lu
 
 export function Footer() {
   return (
-    <footer className="bg-[#0B1426] border-t border-white/5 pt-24 pb-12 relative overflow-hidden">
+    <footer className="bg-gradient-to-b from-[#111A2E] to-[#0B1426] border-t border-white/5 pt-24 pb-12 relative overflow-hidden">
       <div className="absolute inset-0 dark-grid-pattern opacity-5" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50" />
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-full max-w-4xl h-40 bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
+
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top CTA Banner in Footer */}
-        <div className="bg-primary border border-primary/20 rounded-[2.5rem] p-8 md:p-12 mb-20 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-primary/20">
-          <div>
+        <div className="bg-primary/95 backdrop-blur-sm border border-primary-foreground/20 rounded-[2.5rem] p-8 md:p-12 mb-20 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-primary/20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />
+          <div className="relative z-10">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Ready to transform your business?</h3>
             <p className="text-white/80 text-lg">Let's build something extraordinary together.</p>
           </div>
-          <Link href="/contact">
+          <Link href="/contact" className="relative z-10">
             <Button size="lg" className="rounded-full h-14 px-8 bg-white hover:bg-white/90 text-primary font-bold gap-2 text-lg whitespace-nowrap group shadow-lg">
               Start Your Project <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Button>
