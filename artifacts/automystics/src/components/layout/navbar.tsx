@@ -94,9 +94,13 @@ export function Navbar() {
     <nav className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-6xl">
         <div className="bg-[#0B1426] text-white rounded-full shadow-2xl shadow-primary/10 border border-white/10 flex items-center justify-between h-16 px-4 md:px-6">
-          <Link href="/" className="flex items-center relative z-10 outline-none shrink-0" data-testid="nav-logo">
+          <Link href="/" className="flex items-center gap-3 relative z-10 outline-none shrink-0" data-testid="nav-logo">
             <div className="bg-white rounded-2xl h-12 w-14 flex items-center justify-center shadow-lg ring-1 ring-white/20">
               <img src="/logo-icon.png" alt="Automystics" className="h-10 w-auto object-contain" />
+            </div>
+            <div className="hidden sm:flex flex-col leading-tight">
+              <span className="text-base font-extrabold tracking-tight text-white">Automystics</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-primary">An AI Automation Company</span>
             </div>
           </Link>
 
