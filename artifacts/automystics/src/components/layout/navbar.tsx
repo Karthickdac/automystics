@@ -100,7 +100,7 @@ export function Navbar() {
             </div>
             <div className="hidden sm:flex flex-col leading-none">
               <span className="text-xl font-extrabold tracking-tight text-white uppercase">Automystics</span>
-              <span className="text-[8.5px] font-semibold uppercase text-primary mt-1" style={{ letterSpacing: "0.02em" }}>An AI Automation Company</span>
+              <span className="text-[9.5px] font-semibold uppercase text-primary mt-1 block text-center" style={{ letterSpacing: "0.18em", marginRight: "-0.18em" }}>An AI Automation Company</span>
             </div>
           </Link>
 
