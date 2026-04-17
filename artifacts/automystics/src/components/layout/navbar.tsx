@@ -94,10 +94,10 @@ export function Navbar() {
 
   const triggerClass = (path: string) => {
     const active = location === path || location.startsWith(path + "/");
-    return `h-10 rounded-full px-4 py-2 text-sm font-semibold transition-all bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-primary data-[state=open]:text-white ${
+    return `!h-10 rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:!bg-primary data-[state=open]:!text-white ${
       active
-        ? "bg-primary/20 text-white ring-1 ring-primary/50 shadow-[0_0_18px_rgba(34,211,238,0.25)]"
-        : "text-white/80"
+        ? "!bg-primary !text-white shadow-lg shadow-primary/40"
+        : "bg-transparent text-white/80"
     }`;
   };
 
@@ -166,7 +166,7 @@ export function Navbar() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "bg-primary/20 text-white ring-1 ring-primary/50 shadow-[0_0_18px_rgba(34,211,238,0.25)]" : "text-white/80"}`}>
+                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "bg-primary text-white shadow-lg shadow-primary/40" : "text-white/80"}`}>
                       Contact Us
                     </Link>
                   </NavigationMenuLink>
