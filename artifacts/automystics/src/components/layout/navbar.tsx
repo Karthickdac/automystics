@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Server, Cloud, Smartphone, Paintbrush, Cog, Workflow, Settings, Users, BookOpen, Briefcase, FileText, HeartHandshake } from "lucide-react";
+import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Server, Cloud, Smartphone, Paintbrush, Cog, Workflow, Settings, Users, BookOpen, Briefcase, FileText, HeartHandshake, Database } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -46,12 +46,14 @@ const industries = [
 ];
 
 const solutions = [
-  { id: "enterprise-automation", title: "Enterprise Automation", desc: "Workflow optimization", icon: Workflow },
-  { id: "ai-voice", title: "AI Voice Agents", desc: "Conversational interfaces", icon: Mic },
-  { id: "algo-trading", title: "Algorithmic Trading", desc: "Quantitative execution", icon: LineChart },
-  { id: "surveillance", title: "Surveillance Intelligence", desc: "Video analytics", icon: Camera },
-  { id: "solar-monitoring", title: "Solar Plant Monitoring", desc: "IoT data collection", icon: Sun },
-  { id: "academic", title: "Academic Management", desc: "Student lifecyle", icon: GraduationCap },
+  { id: "enterprise-automation", title: "Enterprise Automation", desc: "End-to-end workflow orchestration", icon: Workflow },
+  { id: "ai-voice", title: "AI Voice Agents", desc: "Conversational AI for support & sales", icon: Mic },
+  { id: "algo-trading", title: "Algorithmic Trading", desc: "Low-latency quantitative execution", icon: LineChart },
+  { id: "surveillance", title: "Surveillance Intelligence", desc: "Real-time video analytics & alerts", icon: Camera },
+  { id: "solar-monitoring", title: "Solar Plant Monitoring", desc: "SCADA & IoT telemetry at scale", icon: Sun },
+  { id: "academic", title: "Academic Management", desc: "Full student & faculty lifecycle", icon: GraduationCap },
+  { id: "fintech-platform", title: "Fintech Platforms", desc: "Compliant lending & chit fund engines", icon: Building2 },
+  { id: "data-intelligence", title: "Data Intelligence", desc: "Pipelines, dashboards & BI", icon: Database },
 ];
 
 const company = [
@@ -90,6 +92,15 @@ export function Navbar() {
   const isHome = location === "/";
   const isContact = location === "/contact";
 
+  const triggerClass = (path: string) => {
+    const active = location === path || location.startsWith(path + "/");
+    return `h-10 rounded-full px-4 py-2 text-sm font-semibold transition-all bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-primary data-[state=open]:text-white ${
+      active
+        ? "bg-primary/20 text-white ring-1 ring-primary/50 shadow-[0_0_18px_rgba(34,211,238,0.25)]"
+        : "text-white/80"
+    }`;
+  };
+
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-6xl">
@@ -109,7 +120,7 @@ export function Navbar() {
             <NavigationMenu>
               <NavigationMenuList className="gap-0.5">
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                  <NavigationMenuTrigger className={triggerClass("/services")}>
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -118,7 +129,7 @@ export function Navbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                  <NavigationMenuTrigger className={triggerClass("/products")}>
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -127,7 +138,7 @@ export function Navbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                  <NavigationMenuTrigger className={triggerClass("/industries")}>
                     Industries
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -136,7 +147,7 @@ export function Navbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                  <NavigationMenuTrigger className={triggerClass("/solutions")}>
                     Solutions
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -145,7 +156,7 @@ export function Navbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="h-10 rounded-full px-3 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 text-white/80">
+                  <NavigationMenuTrigger className={triggerClass("/company")}>
                     Company
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -155,7 +166,7 @@ export function Navbar() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-3 py-2 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "text-white bg-white/5" : "text-white/80"}`}>
+                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "bg-primary/20 text-white ring-1 ring-primary/50 shadow-[0_0_18px_rgba(34,211,238,0.25)]" : "text-white/80"}`}>
                       Contact Us
                     </Link>
                   </NavigationMenuLink>
