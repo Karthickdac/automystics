@@ -39,17 +39,6 @@
   --color-destructive-foreground: hsl(var(--destructive-foreground));
   --color-destructive-border: var(--destructive-border);
 
-  --color-sidebar: hsl(var(--sidebar));
-  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
-  --color-sidebar-border: hsl(var(--sidebar-border));
-  --color-sidebar-primary: hsl(var(--sidebar-primary));
-  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
-  --color-sidebar-primary-border: var(--sidebar-primary-border);
-  --color-sidebar-accent: hsl(var(--sidebar-accent));
-  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
-  --color-sidebar-accent-border: var(--sidebar-accent-border);
-  --color-sidebar-ring: hsl(var(--sidebar-ring));
-
   --font-sans: var(--app-font-sans);
   --font-serif: var(--app-font-serif);
   --font-mono: var(--app-font-mono);
@@ -60,60 +49,45 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Base values - Dark mode default as requested */
 :root {
-  color-scheme: dark;
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
-  --opaque-button-border-intensity: 9;
-
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
-
-  /* Deep Navy Background */
-  --background: 222 47% 7%;
-  --foreground: 210 40% 98%;
-  --border: 217 33% 17%;
-  --card: 222 47% 9%;
-  --card-foreground: 210 40% 98%;
-  --card-border: 217 33% 17%;
+  color-scheme: light;
   
-  --sidebar: 222 47% 7%;
-  --sidebar-foreground: 210 40% 98%;
-  --sidebar-border: 217 33% 17%;
-  --sidebar-primary: 190 90% 50%;
-  --sidebar-primary-foreground: 222 47% 7%;
-  --sidebar-accent: 222 47% 12%;
-  --sidebar-accent-foreground: 210 40% 98%;
-  --sidebar-ring: 190 90% 50%;
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
   
-  --popover: 222 47% 9%;
-  --popover-foreground: 210 40% 98%;
-  --popover-border: 217 33% 17%;
+  --border: 214 32% 91%;
+  
+  --card: 210 40% 98%;
+  --card-foreground: 222 47% 11%;
+  --card-border: 214 32% 91%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --popover-border: 214 32% 91%;
   
   /* Electric Cyan / Blue */
-  --primary: 190 90% 50%;
-  --primary-foreground: 222 47% 7%;
+  --primary: 190 90% 45%;
+  --primary-foreground: 0 0% 100%;
   
-  --secondary: 217 33% 15%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222 47% 11%;
   
-  --muted: 217 33% 15%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
   
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222 47% 11%;
   
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
   
-  --input: 217 33% 17%;
-  --ring: 190 90% 50%;
+  --input: 214 32% 91%;
+  --ring: 190 90% 45%;
 
   --app-font-sans: 'Inter', system-ui, sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
-  --radius: 0.75rem;
+  --radius: 1rem;
 }
 
 @layer base {
@@ -127,6 +101,11 @@
 
 /* Subtle background patterns */
 .bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.dark-grid-pattern {
   background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
                     linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 40px 40px;
@@ -138,7 +117,7 @@
   right: -10%;
   width: 60%;
   height: 60%;
-  background: radial-gradient(circle at center, hsla(var(--primary), 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle at center, hsla(var(--primary), 0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -149,12 +128,11 @@
   left: -10%;
   width: 60%;
   height: 60%;
-  background: radial-gradient(circle at center, hsla(var(--primary), 0.1) 0%, transparent 60%);
+  background: radial-gradient(circle at center, hsla(var(--primary), 0.05) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Pill button overrides for global apply */
 .rounded-pill {
   border-radius: 9999px;
 }

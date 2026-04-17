@@ -71,34 +71,34 @@ export function Navbar() {
   const isContact = location === "/contact";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-white/5">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-3 relative z-10">
-            <div className="bg-white p-1 rounded-full w-10 h-10 flex items-center justify-center overflow-hidden">
-              <img src="/logo.jpeg" alt="Automystics Logo" className="w-8 h-8 object-contain mix-blend-multiply" />
+    <nav className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-5xl">
+        <div className="bg-[#0B1426] text-white rounded-full shadow-2xl shadow-primary/10 border border-white/10 flex items-center justify-between h-16 px-4 md:px-6">
+          <Link href="/" className="flex items-center gap-3 relative z-10 outline-none">
+            <div className="bg-white p-1 rounded-full w-9 h-9 flex items-center justify-center overflow-hidden shrink-0">
+              <img src="/logo.jpeg" alt="Automystics Logo" className="w-7 h-7 object-contain mix-blend-multiply" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white hidden sm:block">Automystics</span>
+            <span className="text-lg font-bold tracking-tight text-white hidden sm:block">Automystics</span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center justify-center flex-1">
             <NavigationMenu>
-              <NavigationMenuList className="gap-2">
+              <NavigationMenuList className="gap-1">
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white focus:bg-white/5 focus:text-white outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-white/5 data-[state=open]:bg-white/5 ${isHome ? "text-white" : "text-muted-foreground"}`}>
+                    <Link href="/" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isHome ? "text-white bg-white/5" : "text-white/70"}`}>
                       Home
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={`h-10 rounded-full px-4 py-2 text-sm font-medium bg-transparent hover:bg-white/5 focus:bg-white/5 data-[state=open]:bg-white/5 ${isProducts ? "text-white" : "text-muted-foreground hover:text-white"}`}>
+                  <NavigationMenuTrigger className={`h-10 rounded-full px-4 py-2 text-sm font-medium bg-transparent hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:bg-white/10 ${isProducts ? "text-white bg-white/5" : "text-white/70"}`}>
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[800px] p-6 grid grid-cols-2 gap-4 bg-card border border-white/10 rounded-2xl shadow-2xl">
+                    <div className="w-[800px] p-6 grid grid-cols-2 gap-4 bg-[#0B1426] border border-white/10 rounded-2xl shadow-2xl">
                       {products.map((product) => (
                         <Link key={product.id} href={`/products#${product.id}`} className="group p-3 rounded-xl hover:bg-white/5 transition-colors flex gap-4 items-start outline-none">
                           <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
@@ -108,7 +108,7 @@ export function Navbar() {
                             <div className="font-semibold text-white mb-1 group-hover:text-primary transition-colors">
                               {product.title}
                             </div>
-                            <div className="text-sm text-muted-foreground line-clamp-1">
+                            <div className="text-sm text-white/60 line-clamp-1">
                               {product.description}
                             </div>
                           </div>
@@ -120,7 +120,7 @@ export function Navbar() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white focus:bg-white/5 focus:text-white outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-white/5 data-[state=open]:bg-white/5 ${isContact ? "text-white" : "text-muted-foreground"}`}>
+                    <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "text-white bg-white/5" : "text-white/70"}`}>
                       Contact Us
                     </Link>
                   </NavigationMenuLink>
@@ -129,9 +129,9 @@ export function Navbar() {
             </NavigationMenu>
           </div>
 
-          <div className="hidden lg:flex items-center justify-end relative z-10">
+          <div className="hidden lg:flex items-center justify-end relative z-10 shrink-0">
             <Link href="/contact">
-              <Button className="rounded-full h-11 px-6 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold gap-2 transition-all hover:pr-4 group" data-testid="nav-cta">
+              <Button className="rounded-full h-10 px-5 bg-primary hover:bg-primary/90 text-white font-semibold gap-2 transition-all group" data-testid="nav-cta">
                 Start a Project
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </Button>
@@ -142,13 +142,13 @@ export function Navbar() {
           <div className="lg:hidden relative z-10">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
-                  <Menu className="w-6 h-6" />
+                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 hover:text-white rounded-full">
+                  <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-background border-l border-white/10 p-6 w-[320px] overflow-y-auto">
+              <SheetContent side="right" className="bg-[#0B1426] border-l border-white/10 p-6 w-[320px] overflow-y-auto">
                 <div className="flex flex-col gap-6 mt-10">
-                  <Link href="/" className={`text-lg font-medium transition-colors ${isHome ? "text-white" : "text-muted-foreground"}`}>
+                  <Link href="/" className={`text-lg font-medium transition-colors ${isHome ? "text-white" : "text-white/70"}`}>
                     Home
                   </Link>
                   
@@ -156,20 +156,20 @@ export function Navbar() {
                     <div className="text-lg font-medium text-white">Products</div>
                     <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
                       {products.map(p => (
-                        <Link key={p.id} href={`/products#${p.id}`} className="text-muted-foreground hover:text-white text-sm">
+                        <Link key={p.id} href={`/products#${p.id}`} className="text-white/70 hover:text-white text-sm">
                           {p.title}
                         </Link>
                       ))}
                     </div>
                   </div>
 
-                  <Link href="/contact" className={`text-lg font-medium transition-colors ${isContact ? "text-white" : "text-muted-foreground"}`}>
+                  <Link href="/contact" className={`text-lg font-medium transition-colors ${isContact ? "text-white" : "text-white/70"}`}>
                     Contact
                   </Link>
                   
                   <div className="h-px bg-white/10 w-full my-2"></div>
                   <Link href="/contact">
-                    <Button variant="default" className="w-full rounded-full bg-primary text-primary-foreground font-semibold gap-2 h-12">
+                    <Button variant="default" className="w-full rounded-full bg-primary text-white font-semibold gap-2 h-12 hover:bg-primary/90">
                       Start a Project <ArrowUpRight className="w-4 h-4" />
                     </Button>
                   </Link>
