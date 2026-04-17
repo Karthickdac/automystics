@@ -92,7 +92,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/40">
-            © {new Date().getFullYear()} Automystics. All rights reserved.
+            © {new Date().getFullYear()} Automystics Technologies Private Limited. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="#" className="text-sm text-white/40 hover:text-white transition-colors">Privacy Policy</Link>

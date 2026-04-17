@@ -102,7 +102,7 @@ export function Company() {
                   Our Mission
                 </h2>
                 <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-                  Founded in Tamil Nadu, Automystics emerged from a simple premise: enterprise software is too slow to build and too hard to maintain. We assembled a team of elite engineers dedicated to changing that paradigm through AI-assisted development and rigorous architectural standards.
+                  Founded in Tamil Nadu, Automystics Technologies Private Limited emerged from a simple premise: enterprise software is too slow to build and too hard to maintain. We assembled a team of elite engineers dedicated to changing that paradigm through AI-assisted development and rigorous architectural standards.
                 </p>
                 <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
                   Today, we power core operations for financial institutions, large-scale educational trusts, and industrial facilities, delivering military-grade software at startup speed.
@@ -117,7 +117,7 @@ export function Company() {
                 </div>
               </div>
               <div className="flex-1 w-full">
-                <PreviewCard title="Automystics, Inc." kicker="Company Snapshot" icon={Building}>
+                <PreviewCard title="Automystics Technologies Pvt Ltd" kicker="Company Snapshot" icon={Building}>
                   <div className="grid grid-cols-2 gap-3">
                     <StatBlock label="Founded" value="2019" sub="Tamil Nadu" />
                     <StatBlock label="Engineers" value="84+" sub="Hand-picked" accent="text-emerald-400" />

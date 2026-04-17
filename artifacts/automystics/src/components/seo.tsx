@@ -27,7 +27,9 @@ export function SEO({ title, description, canonical }: SEOProps) {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "Automystics",
+          "name": "Automystics Technologies Private Limited",
+          "legalName": "Automystics Technologies Private Limited",
+          "alternateName": "Automystics",
           "url": "https://automystics.com",
           "logo": "https://automystics.com/logo.jpeg",
           "description": "An AI Automation Company delivering complex software solutions with unprecedented speed.",
