@@ -99,8 +99,8 @@ export function Navbar() {
               <img src="/logo-icon.png" alt="Automystics" className="h-10 w-auto object-contain" />
             </div>
             <div className="hidden sm:flex flex-col leading-none">
-              <span className="text-xl font-extrabold tracking-tight text-white uppercase">Automystics</span>
-              <span className="text-[9px] font-semibold uppercase text-primary mt-1 block" style={{ letterSpacing: "0.115em", marginRight: "-0.115em" }}>An AI Automation Company</span>
+              <span className="text-base font-extrabold tracking-tight text-white uppercase">Automystics</span>
+              <span className="text-[7.5px] font-semibold uppercase text-primary mt-1 block" style={{ letterSpacing: "0.105em", marginRight: "-0.105em" }}>An AI Automation Company</span>
             </div>
           </Link>
 
