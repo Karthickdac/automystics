@@ -58,13 +58,13 @@ export function Home() {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-lg shadow-primary/10 text-primary text-xs font-bold mb-8 uppercase tracking-[0.2em] backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5" /> Engineering The Future <span className="w-1 h-1 rounded-full bg-primary" /> Est. 2019
+              <Sparkles className="w-3.5 h-3.5" /> Engineering The Future
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-6 relative">
-              An AI Automation Company<br/>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-[1.05] mb-8 relative">
+              We Build Software,<br/>
               <span className="relative inline-block mt-1">
-                <span className="bg-gradient-to-r from-cyan-400 via-primary to-cyan-300 bg-clip-text text-transparent">for SaaS, Startups, and SMEs</span>
+                <span className="bg-gradient-to-r from-cyan-400 via-primary to-cyan-300 bg-clip-text text-transparent">Faster Than Anyone.</span>
                 <svg className="absolute w-full -bottom-2 left-0" height="12" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
                   <path d="M2 8 Q50 2 100 6 T198 5" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.7" />
                 </svg>
@@ -72,19 +72,19 @@ export function Home() {
             </h1>
             
             <p className="text-lg md:text-xl text-white/60 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Accelerate your roadmap with custom AI-integrated web and mobile ecosystems. We bridge the gap between initial concept and global scale, delivering rapid MVP launches and robust, enterprise-grade SaaS architectures.
+              Automystics delivers precision-engineered AI applications, financial platforms, and industrial systems with unprecedented speed.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
               <Link href="/contact">
-                <Button size="lg" data-testid="button-hero-consult" className="w-full sm:w-auto rounded-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-white font-semibold px-7 py-6 text-base shadow-2xl shadow-primary/40 group">
-                  Book 20-min Consult
+                <Button size="lg" data-testid="button-hero-start" className="w-full sm:w-auto rounded-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-white font-semibold px-7 py-6 text-base shadow-2xl shadow-primary/40 group">
+                  Start Your Project
                   <ArrowUpRight className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Button>
               </Link>
               <Link href="/products">
-                <Button size="lg" variant="outline" data-testid="button-hero-portfolio" className="w-full sm:w-auto rounded-full bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30 text-white font-semibold px-7 py-6 text-base backdrop-blur-md group">
-                  View Our Work Portfolios
+                <Button size="lg" variant="outline" data-testid="button-hero-explore" className="w-full sm:w-auto rounded-full bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30 text-white font-semibold px-7 py-6 text-base backdrop-blur-md group">
+                  Explore Products
                   <ArrowUpRight className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Button>
               </Link>
@@ -94,9 +94,16 @@ export function Home() {
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mt-4 text-white/80">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
-                  <HandCoins className="w-4 h-4 text-primary" />
+                  <Zap className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-sm font-semibold">Free Estimate</span>
+                <span className="text-sm font-semibold">Fastest Delivery</span>
+              </div>
+              <div className="hidden md:block w-px h-6 bg-white/10" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">Enterprise Grade</span>
               </div>
               <div className="hidden md:block w-px h-6 bg-white/10" />
               <div className="flex items-center gap-2.5">
@@ -108,16 +115,9 @@ export function Home() {
               <div className="hidden md:block w-px h-6 bg-white/10" />
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
-                  <ShieldCheck className="w-4 h-4 text-primary" />
+                  <Code className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-sm font-semibold">100% Risk-Free</span>
-              </div>
-              <div className="hidden md:block w-px h-6 bg-white/10" />
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
-                  <Zap className="w-4 h-4 text-primary" />
-                </div>
-                <span className="text-sm font-semibold">Fastest Delivery</span>
+                <span className="text-sm font-semibold">100% Custom Built</span>
               </div>
             </div>
           </motion.div>
