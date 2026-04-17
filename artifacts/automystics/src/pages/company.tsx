@@ -11,8 +11,9 @@ export function Company() {
   return (
     <div className="bg-transparent relative">
       <SEO 
-        title="Company | Automystics"
-        description="Learn about Automystics, our process, careers, and the partners that power our AI automation."
+        title="Company — About Automystics Technologies Private Limited"
+        description="Founded 2019 in Tamil Nadu, Automystics Technologies Private Limited is an ISO 27001-certified AI Automation Company with 84+ engineers, 142+ enterprise clients, and operations across 14 countries. Learn about our mission, process, careers, and partners."
+        keywords="Automystics company, about Automystics, Automystics Technologies Private Limited, AI automation company Tamil Nadu, software engineering careers India, ISO 27001 software vendor, Automystics process, Automystics partners"
         canonical="/company"
       />
 

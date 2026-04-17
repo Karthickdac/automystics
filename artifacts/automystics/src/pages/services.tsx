@@ -161,8 +161,9 @@ export function Services() {
   return (
     <div className="bg-transparent relative">
       <SEO 
-        title="Services | Automystics"
-        description="Enterprise-grade software engineering, AI integration, and cloud DevOps services."
+        title="Services — Custom Software, AI Integration & Cloud DevOps"
+        description="End-to-end services from Automystics Technologies Private Limited: custom software engineering, AI/ML integration, mobile apps, cloud DevOps, UI/UX design, and managed support — built for enterprise scale."
+        keywords="custom software services, AI integration services, machine learning consulting, mobile app development services, cloud DevOps consulting, UI UX design agency India, enterprise software services, managed software support"
         canonical="/services"
       />
 

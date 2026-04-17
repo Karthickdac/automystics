@@ -25,8 +25,9 @@ export function Home() {
   return (
     <div className="relative">
       <SEO 
-        title="Automystics - Enterprise AI & Automation"
-        description="We build complex software faster than anyone else. Enterprise grade, 100% custom built."
+        title="Automystics Technologies Private Limited | An AI Automation Company"
+        description="Automystics Technologies Private Limited is an AI Automation Company building enterprise-grade custom software, AI integrations, fintech platforms, college and school ERPs, SCADA monitoring, and CCTV AI surveillance — delivered with unprecedented speed."
+        keywords="AI automation company, custom software development India, enterprise AI, SaaS development, MVP launch, fintech platform, voice AI, Kural AI, chit fund software, college management system, SCADA monitoring, CCTV AI"
         canonical="/"
       />
 

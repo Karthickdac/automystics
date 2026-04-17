@@ -161,8 +161,9 @@ export function Solutions() {
   return (
     <div className="bg-transparent relative">
       <SEO 
-        title="Solutions | Automystics"
-        description="Targeted technology solutions solving complex challenges with automation and AI."
+        title="Solutions — AI Automation, RPA & Intelligent Platforms"
+        description="Targeted Automystics solutions: AI workflow automation, voice AI, computer vision, predictive analytics, smart energy, EdTech platforms, fintech infrastructure, and data intelligence — engineered for measurable ROI."
+        keywords="AI workflow automation, voice AI solution, computer vision solution, predictive analytics platform, smart energy software, EdTech platform, fintech infrastructure, data intelligence platform, RPA solutions India"
         canonical="/solutions"
       />
 

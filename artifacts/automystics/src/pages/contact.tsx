@@ -30,8 +30,9 @@ export function Contact() {
   return (
     <div className="min-h-screen bg-transparent relative pt-40 pb-24">
       <SEO 
-        title="Contact Us | Automystics"
-        description="Get in touch with Automystics to discuss your custom software and AI automation needs."
+        title="Contact Automystics — Start Your AI Automation Project"
+        description="Talk to Automystics Technologies Private Limited about custom software, AI automation, fintech platforms, or industrial systems. Free 20-minute consultation, signed NDA, and risk-free project scoping — based in Tamil Nadu, serving worldwide."
+        keywords="contact Automystics, AI automation consultation, software development quote India, hire AI automation company, free MVP estimate, signed NDA software vendor, Tamil Nadu software company contact"
         canonical="/contact"
       />
 

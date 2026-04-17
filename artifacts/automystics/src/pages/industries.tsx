@@ -161,8 +161,9 @@ export function Industries() {
   return (
     <div className="bg-transparent relative">
       <SEO 
-        title="Industries | Automystics"
-        description="Specialized enterprise software solutions across finance, education, energy, healthcare, and more."
+        title="Industries — Finance, Education, Energy, Healthcare & More"
+        description="Industry-specific software from Automystics Technologies Private Limited spanning finance, education, manufacturing, solar energy, healthcare, retail, logistics, and the public sector — with proven enterprise deployments."
+        keywords="finance software solutions, education technology India, manufacturing automation software, solar energy monitoring, healthcare software India, retail automation, logistics software, public sector software India"
         canonical="/industries"
       />
 

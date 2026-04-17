@@ -249,8 +249,9 @@ export function Products() {
   return (
     <div className="bg-transparent relative">
       <SEO 
-        title="Products & Services | Automystics"
-        description="Explore Automystics' suite of enterprise AI and automation solutions."
+        title="Products — AI & Automation Platforms by Automystics"
+        description="Explore Automystics Technologies Private Limited's suite of 8 enterprise products: Chit Fund Management, KalviCore college ERP, Kural AI voice automation, Auto Algo Trading, SCADA Solar Monitoring, CCTV AutoMonitoring, School Management, and bespoke custom software."
+        keywords="Automystics products, chit fund management software, KalviCore college ERP, Kural AI voice automation, auto algo trading platform, SCADA solar monitoring, CCTV AI monitoring, school management software, custom enterprise software"
         canonical="/products"
       />
 
