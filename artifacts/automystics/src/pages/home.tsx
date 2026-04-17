@@ -133,27 +133,55 @@ export function Home() {
             <p className="text-xl text-muted-foreground">From high-frequency algorithmic trading to large-scale SCADA monitoring, our suite of AI-powered solutions drives industry transformation.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {products.map((product, i) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <Card className="h-full bg-white card-hover-effect rounded-3xl overflow-hidden cursor-pointer group">
-                  <CardContent className="p-8">
-                    <div className="w-12 h-12 rounded-xl bg-background border border-card-border flex items-center justify-center mb-6 group-hover:bg-primary/5 transition-colors duration-300">
-                      <product.icon className="w-6 h-6 text-primary" />
+                <Link href={`/products#${product.id}`} className="block h-full group" data-testid={`product-tile-${product.id}`}>
+                  <div className="relative h-full bg-white rounded-3xl border border-card-border overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/40">
+                    {/* Top gradient accent bar */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-cyan-400 to-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+                    
+                    {/* Decorative bg blob */}
+                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    
+                    {/* Index number watermark */}
+                    <div className="absolute top-6 right-6 text-5xl font-extrabold text-primary/5 group-hover:text-primary/10 transition-colors leading-none select-none">
+                      {String(i + 1).padStart(2, "0")}
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight">{product.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">{product.desc}</p>
-                    <Link href={`/products#${product.id}`} className="inline-flex items-center text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                      Learn More <ArrowUpRight className="w-4 h-4 ml-1 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                    </Link>
-                  </CardContent>
-                </Card>
+
+                    <div className="relative p-7 flex flex-col h-full">
+                      {/* Icon */}
+                      <div className="relative mb-8">
+                        <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                          <product.icon className="w-7 h-7 text-white" />
+                        </div>
+                      </div>
+
+                      <h3 className="text-lg font-bold text-foreground mb-3 tracking-tight group-hover:text-primary transition-colors">
+                        {product.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+                        {product.desc}
+                      </p>
+
+                      <div className="flex items-center justify-between pt-5 border-t border-card-border">
+                        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground group-hover:text-primary transition-colors">
+                          Explore
+                        </span>
+                        <div className="w-9 h-9 rounded-full bg-background flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                          <ArrowUpRight className="w-4 h-4 text-foreground group-hover:text-white transition-colors" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>

@@ -52,10 +52,10 @@
 :root {
   color-scheme: light;
   
-  --background: 223 33% 97%; /* #F4F6FB */
+  --background: 220 30% 94%; /* deeper blue-gray */
   --foreground: 222 47% 11%;
   
-  --border: 214 32% 91%;
+  --border: 214 32% 88%;
   
   --card: 0 0% 100%;
   --card-foreground: 222 47% 11%;
