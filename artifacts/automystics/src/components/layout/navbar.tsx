@@ -113,7 +113,7 @@ export function Navbar() {
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <DropdownGrid items={services} linkPrefix="/#" />
+                    <DropdownGrid items={services} linkPrefix="/services" />
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
@@ -122,7 +122,7 @@ export function Navbar() {
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <DropdownGrid items={products} linkPrefix="/products#" />
+                    <DropdownGrid items={products} linkPrefix="/products" />
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
@@ -131,7 +131,7 @@ export function Navbar() {
                     Industries
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <DropdownGrid items={industries} linkPrefix="/#" />
+                    <DropdownGrid items={industries} linkPrefix="/industries" />
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
@@ -140,7 +140,7 @@ export function Navbar() {
                     Solutions
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <DropdownGrid items={solutions} linkPrefix="/#" />
+                    <DropdownGrid items={solutions} linkPrefix="/solutions" />
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
@@ -149,7 +149,7 @@ export function Navbar() {
                     Company
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <DropdownGrid items={company} linkPrefix="/#" />
+                    <DropdownGrid items={company} linkPrefix="/company" />
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
@@ -191,7 +191,7 @@ export function Navbar() {
                     <div className="text-lg font-medium text-white">Services</div>
                     <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
                       {services.map(p => (
-                        <Link key={p.id} href={`/#${p.id}`} className="text-white/70 hover:text-white text-sm">
+                        <Link key={p.id} href={`/services#${p.id}`} className="text-white/70 hover:text-white text-sm">
                           {p.title}
                         </Link>
                       ))}
@@ -213,7 +213,29 @@ export function Navbar() {
                     <div className="text-lg font-medium text-white">Industries</div>
                     <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
                       {industries.map(p => (
-                        <Link key={p.id} href={`/#${p.id}`} className="text-white/70 hover:text-white text-sm">
+                        <Link key={p.id} href={`/industries#${p.id}`} className="text-white/70 hover:text-white text-sm">
+                          {p.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="text-lg font-medium text-white">Solutions</div>
+                    <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
+                      {solutions.map(p => (
+                        <Link key={p.id} href={`/solutions#${p.id}`} className="text-white/70 hover:text-white text-sm">
+                          {p.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="text-lg font-medium text-white">Company</div>
+                    <div className="pl-4 border-l border-white/10 flex flex-col gap-4">
+                      {company.map(p => (
+                        <Link key={p.id} href={`/company#${p.id}`} className="text-white/70 hover:text-white text-sm">
                           {p.title}
                         </Link>
                       ))}
