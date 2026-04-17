@@ -98,9 +98,9 @@ export function Navbar() {
             <div className="bg-white rounded-2xl h-12 w-14 flex items-center justify-center shadow-lg ring-1 ring-white/20">
               <img src="/logo-icon.png" alt="Automystics" className="h-10 w-auto object-contain" />
             </div>
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="text-base font-extrabold tracking-tight text-white">Automystics</span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-primary">An AI Automation Company</span>
+            <div className="hidden sm:flex flex-col leading-none">
+              <span className="text-xl font-extrabold tracking-tight text-white">Automystics</span>
+              <span className="text-[8.5px] font-semibold uppercase text-primary mt-1" style={{ letterSpacing: "0.02em" }}>An AI Automation Company</span>
             </div>
           </Link>
 
