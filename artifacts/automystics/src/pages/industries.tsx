@@ -88,7 +88,7 @@ export function Industries() {
         </div>
       </div>
 
-      <div className="py-24 md:py-32 relative z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-[#F4F6FB] to-[#EBEFF7]">
+      <div className="py-24 md:py-32 relative z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-[#E1E6EF] to-[#D4DBE8]">
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-32">
             {industries.map((industry, index) => (

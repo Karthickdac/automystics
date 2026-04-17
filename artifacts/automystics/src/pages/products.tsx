@@ -101,7 +101,7 @@ export function Products() {
         </div>
       </div>
 
-      <div className="py-24 md:py-32 relative z-10 bg-[#EBEFF7]">
+      <div className="py-24 md:py-32 relative z-10 bg-[#D4DBE8]">
         <div className="absolute inset-0 bg-diagonal-pattern opacity-30" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-32 md:space-y-48">

@@ -122,7 +122,7 @@ export function Home() {
       </section>
 
       {/* Services Grid (Section A: light blue-gray) */}
-      <section id="services" className="py-24 md:py-32 relative bg-[#EBEFF7]">
+      <section id="services" className="py-24 md:py-32 relative bg-[#D4DBE8]">
         <div className="absolute inset-0 bg-diagonal-pattern opacity-30" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
@@ -189,7 +189,7 @@ export function Home() {
       </section>
 
       {/* Industries (Section B: soft gradient panel) */}
-      <section id="industries" className="py-24 md:py-32 relative bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-[#F4F6FB] to-[#EBEFF7]">
+      <section id="industries" className="py-24 md:py-32 relative bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-[#E1E6EF] to-[#D4DBE8]">
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
