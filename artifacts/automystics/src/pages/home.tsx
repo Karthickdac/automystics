@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { 
   Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code,
   Zap, Shield, Clock, ArrowUpRight, CheckCircle2, Factory, Database,
-  Activity, Users
+  Activity, Users, Sparkles, HandCoins, FileSignature, ShieldCheck
 } from "lucide-react";
 
 const products = [
@@ -31,19 +31,24 @@ export function Home() {
       />
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 md:pt-56 md:pb-32 overflow-hidden bg-transparent">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-primary/15 via-primary/5 to-transparent pointer-events-none opacity-80" />
-        
-        {/* Floating decorative orbs */}
+      <section className="relative pt-36 pb-24 md:pt-44 md:pb-28 overflow-hidden">
+        {/* Deep near-black background with side glows */}
+        <div className="absolute inset-0 bg-[#0A0612] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_0%_50%,_rgba(8,145,178,0.35),_transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_50%,_rgba(34,211,238,0.28),_transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,_rgba(34,211,238,0.18),_transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 dark-grid-pattern opacity-30 pointer-events-none" />
+
+        {/* Animated orbs */}
         <motion.div 
-          animate={{ y: [0, -20, 0], opacity: [0.5, 0.8, 0.5] }}
+          animate={{ y: [0, -20, 0], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/20 rounded-full blur-3xl pointer-events-none" 
+          className="absolute top-1/4 left-12 w-40 h-40 bg-primary/30 rounded-full blur-3xl pointer-events-none" 
         />
         <motion.div 
           animate={{ y: [0, 30, 0], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-1/3 right-1/4 w-48 h-48 bg-blue-400/20 rounded-full blur-3xl pointer-events-none" 
+          className="absolute top-1/3 right-12 w-56 h-56 bg-cyan-400/25 rounded-full blur-3xl pointer-events-none" 
         />
 
         <div className="container relative z-10 mx-auto px-4 text-center max-w-5xl">
@@ -52,49 +57,68 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-primary/20 text-primary text-sm font-bold mb-8 uppercase tracking-wide shadow-sm">
-              <span className="text-xl leading-none -mt-1">●</span>
-              Engineering The Future
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-lg shadow-primary/10 text-primary text-xs font-bold mb-8 uppercase tracking-[0.2em] backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5" /> Engineering The Future <span className="w-1 h-1 rounded-full bg-primary" /> Est. 2019
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-8 relative">
-              We Build Software, <br/>
-              <span className="text-primary relative inline-block">
-                Faster Than Anyone.
-                <svg className="absolute w-full h-3 -bottom-2 left-0 text-primary opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0,5 Q50,10 100,5" stroke="currentColor" strokeWidth="4" fill="none" />
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-6 relative">
+              An AI Automation Company<br/>
+              <span className="relative inline-block mt-1">
+                <span className="bg-gradient-to-r from-cyan-400 via-primary to-cyan-300 bg-clip-text text-transparent">for SaaS, Startups, and SMEs</span>
+                <svg className="absolute w-full -bottom-2 left-0" height="12" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
+                  <path d="M2 8 Q50 2 100 6 T198 5" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.7" />
                 </svg>
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-              Automystics delivers precision-engineered AI applications, financial platforms, and industrial systems with unprecedented speed.
+            <p className="text-lg md:text-xl text-white/60 mb-10 max-w-3xl mx-auto leading-relaxed">
+              Accelerate your roadmap with custom AI-integrated web and mobile ecosystems. We bridge the gap between initial concept and global scale, delivering rapid MVP launches and robust, enterprise-grade SaaS architectures.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
               <Link href="/contact">
-                <Button size="lg" className="w-full sm:w-auto rounded-full h-14 px-8 text-lg bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 group">
-                  Start Your Project
-                  <ArrowUpRight className="w-5 h-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <Button size="lg" data-testid="button-hero-consult" className="w-full sm:w-auto rounded-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-white font-semibold px-7 py-6 text-base shadow-2xl shadow-primary/40 group">
+                  Book 20-min Consult
+                  <ArrowUpRight className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Button>
               </Link>
               <Link href="/products">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full h-14 px-8 text-lg border-card-border hover:bg-white font-semibold group text-foreground bg-white/50 backdrop-blur-sm">
-                  Explore Products
-                  <ArrowUpRight className="w-5 h-5 ml-2 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                <Button size="lg" variant="outline" data-testid="button-hero-portfolio" className="w-full sm:w-auto rounded-full bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30 text-white font-semibold px-7 py-6 text-base backdrop-blur-md group">
+                  View Our Work Portfolios
+                  <ArrowUpRight className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Button>
               </Link>
             </div>
 
-            {/* Trust Strip */}
-            <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-semibold text-muted-foreground border border-card-border py-6 px-4 bg-white/60 rounded-3xl backdrop-blur-md max-w-4xl mx-auto shadow-sm">
-              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-primary" /> Fastest Delivery</div>
-              <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-border" />
-              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-primary" /> Enterprise Grade</div>
-              <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-border" />
-              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Signed with NDA</div>
-              <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-border" />
-              <div className="flex items-center gap-2"><Code className="w-4 h-4 text-primary" /> 100% Custom Built</div>
+            {/* Trust strip - icon row */}
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mt-4 text-white/80">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <HandCoins className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">Free Estimate</span>
+              </div>
+              <div className="hidden md:block w-px h-6 bg-white/10" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <FileSignature className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">Signed with NDA</span>
+              </div>
+              <div className="hidden md:block w-px h-6 bg-white/10" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">100% Risk-Free</span>
+              </div>
+              <div className="hidden md:block w-px h-6 bg-white/10" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">Fastest Delivery</span>
+              </div>
             </div>
           </motion.div>
         </div>
