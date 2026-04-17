@@ -115,7 +115,7 @@ export function Products() {
                 className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-24 items-center scroll-mt-32`}
               >
                 <div className="flex-1 w-full">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-card-border shadow-sm text-foreground text-sm font-bold tracking-wide uppercase mb-8">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-bold tracking-wide uppercase mb-8">
                     <span className="w-2 h-2 rounded-full bg-primary"></span>
                     {product.category}
                   </div>
@@ -146,11 +146,22 @@ export function Products() {
                 </div>
                 
                 <div className="flex-1 w-full">
-                  <Card className="bg-white border-card-border shadow-xl rounded-[2.5rem] aspect-[4/3] flex items-center justify-center overflow-hidden relative group p-4 hover:border-primary/50 transition-colors duration-500">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px] group-hover:bg-primary/20 transition-colors duration-500" />
-                    <div className="relative z-10 w-full h-full bg-white/80 backdrop-blur-md rounded-[2rem] border border-card-border shadow-sm flex items-center justify-center">
-                      <product.icon className="w-32 h-32 text-primary/40 group-hover:scale-110 group-hover:text-primary transition-all duration-700" />
+                  <Card className="bg-gradient-to-br from-[#0B1426] via-[#11203A] to-[#0B1426] border-0 shadow-2xl shadow-primary/20 rounded-[2.5rem] aspect-[4/3] flex items-center justify-center overflow-hidden relative group p-4 transition-all duration-500">
+                    <div className="absolute inset-0 dark-grid-pattern opacity-40" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary/30 rounded-full blur-[100px] group-hover:bg-primary/50 transition-colors duration-500" />
+                    <div className="absolute top-6 left-6 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-widest text-white/80">
+                      Live Preview
+                    </div>
+                    <div className="absolute bottom-6 right-6 flex gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                      <div className="w-2 h-2 rounded-full bg-primary/60 animate-pulse" style={{ animationDelay: "0.3s" }} />
+                      <div className="w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ animationDelay: "0.6s" }} />
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center justify-center gap-5">
+                      <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 group-hover:rotate-3 transition-all duration-700">
+                        <product.icon className="w-16 h-16 text-white" />
+                      </div>
+                      <div className="text-white font-bold text-xl tracking-tight">{product.title.split(" ")[0]}</div>
                     </div>
                   </Card>
                 </div>
