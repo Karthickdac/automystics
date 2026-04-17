@@ -95,10 +95,10 @@ export function Navbar() {
 
   const triggerClass = (path: string) => {
     const active = location === path || location.startsWith(path + "/");
-    return `!h-10 rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 data-[state=open]:!bg-primary data-[state=open]:!text-white ${
+    return `!h-10 rounded-full px-4 py-2 text-sm font-semibold transition-all focus:!outline-none focus-visible:!ring-2 focus-visible:!ring-primary/60 data-[state=open]:!bg-primary data-[state=open]:!text-white ${
       active
-        ? "!bg-primary !text-white shadow-lg shadow-primary/40"
-        : "bg-transparent text-white/80"
+        ? "!bg-primary !text-white shadow-lg shadow-primary/40 hover:!bg-primary hover:!text-white focus:!bg-primary focus:!text-white"
+        : "!bg-transparent !text-white/80 hover:!bg-white/10 hover:!text-white focus:!bg-transparent focus-visible:!bg-white/10"
     }`;
   };
 
