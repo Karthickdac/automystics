@@ -173,14 +173,26 @@ export function Company() {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {[
-                  { title: "Digitizing a $50M Chit Fund", desc: "How we replaced legacy ledgers with a secure, real-time management platform, reducing audit time by 90%." },
-                  { title: "SCADA for 500MW Solar Plant", desc: "Implementing real-time IoT monitoring that improved energy yield optimization and predictive maintenance." },
-                  { title: "Connecting 50+ School Districts", desc: "Deploying KalviCore to unify administration across a massive educational network, serving 100k+ students." }
+                  { tag: "FINTECH", metric: "₹50 Cr", metricLabel: "Assets Digitized", title: "Digitizing a $50M Chit Fund", desc: "How we replaced legacy ledgers with a secure, real-time management platform, reducing audit time by 90%." },
+                  { tag: "ENERGY", metric: "500 MW", metricLabel: "Plant Monitored", title: "SCADA for 500MW Solar Plant", desc: "Implementing real-time IoT monitoring that improved energy yield optimization and predictive maintenance." },
+                  { tag: "EDUCATION", metric: "100K+", metricLabel: "Students Served", title: "Connecting 50+ School Districts", desc: "Deploying KalviCore to unify administration across a massive educational network, serving 100k+ students." }
                 ].map((study, i) => (
-                  <Card key={i} className="bg-white border-card-border shadow-md rounded-3xl p-8 hover:-translate-y-2 transition-transform cursor-pointer group">
-                    <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">{study.title}</h3>
-                    <p className="text-muted-foreground">{study.desc}</p>
-                    <div className="mt-8 text-sm font-bold uppercase tracking-wider text-primary">Read Study &rarr;</div>
+                  <Card key={i} className="relative overflow-hidden bg-gradient-to-br from-[#0B1426] via-[#11203A] to-[#0B1426] border-0 shadow-xl shadow-primary/20 rounded-3xl p-8 hover:-translate-y-2 transition-transform cursor-pointer group">
+                    <div className="absolute inset-0 dark-grid-pattern opacity-40" />
+                    <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary/30 rounded-full blur-3xl group-hover:bg-primary/50 transition-colors" />
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur border border-white/20 text-[10px] font-bold uppercase tracking-widest text-white/80">{study.tag}</span>
+                        <BookOpen className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="mb-6">
+                        <div className="text-4xl font-extrabold text-white tracking-tight">{study.metric}</div>
+                        <div className="text-[10px] uppercase tracking-widest text-primary font-bold mt-1">{study.metricLabel}</div>
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors leading-snug">{study.title}</h3>
+                      <p className="text-sm text-white/60 leading-relaxed">{study.desc}</p>
+                      <div className="mt-6 text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-2">Read Study <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></div>
+                    </div>
                   </Card>
                 ))}
               </div>
@@ -201,14 +213,29 @@ export function Company() {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {[
-                  { title: "Why Voice AI is Changing Customer Service", date: "Oct 12, 2023" },
-                  { title: "Microservices vs Monoliths in 2024", date: "Nov 05, 2023" },
-                  { title: "The True Cost of Legacy Code Maintenance", date: "Dec 01, 2023" }
+                  { tag: "AI & ML", readTime: "8 min", title: "Why Voice AI is Changing Customer Service", date: "Oct 12, 2023", excerpt: "Conversational AI is replacing call centers — here's how to deploy it without losing the human touch." },
+                  { tag: "ARCHITECTURE", readTime: "12 min", title: "Microservices vs Monoliths in 2024", date: "Nov 05, 2023", excerpt: "The pendulum has swung. We break down when each pattern wins and the hidden costs nobody talks about." },
+                  { tag: "ENGINEERING", readTime: "6 min", title: "The True Cost of Legacy Code Maintenance", date: "Dec 01, 2023", excerpt: "An honest look at the compounding tax of technical debt and the real ROI of modernization." }
                 ].map((post, i) => (
-                  <Card key={i} className="bg-white border-card-border shadow-md rounded-3xl p-8 hover:-translate-y-2 transition-transform cursor-pointer group">
-                    <div className="text-xs font-bold text-muted-foreground mb-4 uppercase tracking-wider">{post.date}</div>
-                    <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">{post.title}</h3>
-                    <div className="mt-6 text-sm font-bold uppercase tracking-wider text-primary">Read Post &rarr;</div>
+                  <Card key={i} className="relative overflow-hidden bg-white border border-card-border shadow-md rounded-3xl hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 transition-all cursor-pointer group">
+                    <div className="h-32 bg-gradient-to-br from-[#0B1426] via-[#11203A] to-primary relative overflow-hidden">
+                      <div className="absolute inset-0 dark-grid-pattern opacity-50" />
+                      <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/40 rounded-full blur-2xl" />
+                      <div className="relative z-10 p-6 flex items-start justify-between h-full">
+                        <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur border border-white/20 text-[10px] font-bold uppercase tracking-widest text-white">{post.tag}</span>
+                        <FileText className="w-5 h-5 text-white/80" />
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-3 text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
+                        <span>{post.date}</span>
+                        <span className="w-1 h-1 rounded-full bg-muted-foreground" />
+                        <span>{post.readTime} read</span>
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">{post.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{post.excerpt}</p>
+                      <div className="mt-5 text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-2">Read Post <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></div>
+                    </div>
                   </Card>
                 ))}
               </div>
@@ -229,14 +256,21 @@ export function Company() {
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
-                  { name: "Cloud Infrastructure", icon: Cloud },
-                  { name: "Security Auditing", icon: Shield },
-                  { name: "Hardware & IoT", icon: Cpu },
-                  { name: "Education Boards", icon: GraduationCap }
+                  { name: "Cloud Infrastructure", icon: Cloud, count: "AWS · Azure · GCP", color: "from-blue-500/20 to-cyan-500/20" },
+                  { name: "Security Auditing", icon: Shield, count: "ISO 27001 · SOC 2", color: "from-emerald-500/20 to-teal-500/20" },
+                  { name: "Hardware & IoT", icon: Cpu, count: "Sensors · Edge devices", color: "from-amber-500/20 to-orange-500/20" },
+                  { name: "Education Boards", icon: GraduationCap, count: "CBSE · State boards", color: "from-violet-500/20 to-purple-500/20" }
                 ].map((partner, i) => (
-                  <div key={i} className="flex flex-col items-center justify-center p-8 bg-white border border-card-border rounded-3xl shadow-sm text-center">
-                    <partner.icon className="w-10 h-10 text-muted-foreground mb-4" />
-                    <span className="font-semibold text-foreground">{partner.name}</span>
+                  <div key={i} className="relative overflow-hidden flex flex-col items-center justify-center p-8 bg-white border border-card-border rounded-3xl shadow-sm text-center hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 transition-all group">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${partner.color} opacity-60 group-hover:opacity-100 transition-opacity`} />
+                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className="w-14 h-14 rounded-2xl bg-white shadow-md border border-card-border flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <partner.icon className="w-7 h-7 text-primary" />
+                      </div>
+                      <span className="font-bold text-foreground text-sm mb-1">{partner.name}</span>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{partner.count}</span>
+                    </div>
                   </div>
                 ))}
               </div>
