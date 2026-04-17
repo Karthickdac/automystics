@@ -99,8 +99,8 @@ export function Footer() {
             © {new Date().getFullYear()} Automystics Technologies Private Limited. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="#" className="text-sm text-white/40 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-sm text-white/40 hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-sm text-white/40 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-sm text-white/40 hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
