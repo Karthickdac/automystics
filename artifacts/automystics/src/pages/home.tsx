@@ -233,23 +233,78 @@ export function Home() {
             >
               <div className="absolute inset-0 bg-grid-pattern opacity-30" />
               <div className="w-64 h-64 bg-primary/10 rounded-full blur-[80px] absolute group-hover:bg-primary/20 transition-colors duration-700" />
-              <div className="relative z-10 w-full h-full border border-card-border rounded-2xl bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-center p-8">
+              <div className="relative z-10 w-full h-full border border-card-border rounded-2xl bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-center p-6">
                 <div className="grid grid-cols-2 gap-4 w-full h-full">
-                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4">
-                     <LineChart className="w-10 h-10 text-primary mb-2" />
-                     <div className="h-2 w-16 bg-muted rounded-full mt-2" />
+                  {/* Trading metric */}
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col justify-between p-4 relative overflow-hidden">
+                    <div className="flex items-center justify-between">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <LineChart className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">+24.7%</span>
+                    </div>
+                    <div className="mt-2">
+                      <div className="text-xs text-muted-foreground font-semibold">Trade Volume</div>
+                      <div className="text-xl font-extrabold text-foreground tracking-tight">$4.2M</div>
+                    </div>
+                    <svg viewBox="0 0 100 24" className="w-full h-6" preserveAspectRatio="none">
+                      <polyline points="0,18 15,14 30,16 45,10 60,12 75,6 90,8 100,4" stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
+                    </svg>
                   </div>
-                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4 mt-8">
-                     <Sun className="w-10 h-10 text-primary mb-2" />
-                     <div className="h-2 w-16 bg-muted rounded-full mt-2" />
+                  {/* Solar metric */}
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col justify-between p-4 mt-6 relative overflow-hidden">
+                    <div className="flex items-center justify-between">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Sun className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">LIVE</span>
+                    </div>
+                    <div className="mt-2">
+                      <div className="text-xs text-muted-foreground font-semibold">Power Output</div>
+                      <div className="text-xl font-extrabold text-foreground tracking-tight">128.4 MW</div>
+                    </div>
+                    <div className="flex gap-1 items-end h-6">
+                      {[40, 60, 35, 80, 55, 90, 70, 95].map((h, i) => (
+                        <div key={i} className="flex-1 bg-primary/70 rounded-sm" style={{ height: `${h}%` }} />
+                      ))}
+                    </div>
                   </div>
-                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4 -mt-8">
-                     <Mic className="w-10 h-10 text-primary mb-2" />
-                     <div className="h-2 w-16 bg-muted rounded-full mt-2" />
+                  {/* Voice AI */}
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col justify-between p-4 -mt-6 relative overflow-hidden">
+                    <div className="flex items-center justify-between">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Mic className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">98% ACC</span>
+                    </div>
+                    <div className="mt-2">
+                      <div className="text-xs text-muted-foreground font-semibold">Calls Handled</div>
+                      <div className="text-xl font-extrabold text-foreground tracking-tight">12,847</div>
+                    </div>
+                    <div className="flex items-center gap-0.5 h-6">
+                      {[3, 5, 8, 4, 9, 6, 11, 7, 5, 10, 4, 8, 6, 9].map((h, i) => (
+                        <div key={i} className="flex-1 bg-primary rounded-full" style={{ height: `${h * 8}%` }} />
+                      ))}
+                    </div>
                   </div>
-                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col items-center justify-center p-4">
-                     <Building2 className="w-10 h-10 text-primary mb-2" />
-                     <div className="h-2 w-16 bg-muted rounded-full mt-2" />
+                  {/* Fintech */}
+                  <div className="bg-white rounded-xl border border-card-border shadow-sm flex flex-col justify-between p-4 relative overflow-hidden">
+                    <div className="flex items-center justify-between">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Building2 className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">SECURE</span>
+                    </div>
+                    <div className="mt-2">
+                      <div className="text-xs text-muted-foreground font-semibold">Active Members</div>
+                      <div className="text-xl font-extrabold text-foreground tracking-tight">45.6K</div>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full w-[78%] bg-primary rounded-full" />
+                      </div>
+                      <span className="text-[10px] font-bold text-foreground">78%</span>
+                    </div>
                   </div>
                 </div>
               </div>
