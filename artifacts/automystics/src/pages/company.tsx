@@ -1,8 +1,10 @@
 import React from "react";
 import { SEO } from "@/components/seo";
 import { motion } from "framer-motion";
-import { Users, Workflow, Briefcase, BookOpen, FileText, HeartHandshake, CheckCircle2, Cloud, Shield, Cpu, GraduationCap, Building, Sparkles, TrendingUp, Award, Globe } from "lucide-react";
+import { Users, Workflow, Briefcase, BookOpen, FileText, HeartHandshake, CheckCircle2, Cloud, Shield, Cpu, GraduationCap, Building, Sparkles, TrendingUp, Award, Globe, ArrowUpRight, HandCoins, FileSignature, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import { StatBlock, MiniBars, MiniLine, PreviewCard } from "@/components/dashboard-preview";
 
 export function Company() {
@@ -14,81 +16,70 @@ export function Company() {
         canonical="/company"
       />
 
-      <div className="absolute top-0 left-0 right-0 h-[800px] bg-gradient-to-br from-[#0B1426] via-[#0F1B33] to-[#11203A] pointer-events-none" />
-      <div className="absolute top-32 left-12 w-72 h-72 bg-primary/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-60 right-12 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent pointer-events-none" />
+      {/* Deep near-black hero background with side glows */}
+      <div className="absolute top-0 left-0 right-0 h-[820px] bg-[#0A0612] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[820px] bg-[radial-gradient(ellipse_80%_60%_at_0%_50%,_rgba(8,145,178,0.35),_transparent_60%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[820px] bg-[radial-gradient(ellipse_80%_60%_at_100%_50%,_rgba(34,211,238,0.28),_transparent_60%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[820px] bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,_rgba(34,211,238,0.18),_transparent_70%)] pointer-events-none" />
 
       <div className="pt-36 pb-24 relative z-10 overflow-hidden">
-        <div className="absolute inset-0 dark-grid-pattern opacity-50 pointer-events-none" />
+        <div className="absolute inset-0 dark-grid-pattern opacity-30 pointer-events-none" />
 
-        {/* Floating decorative cards */}
-        <motion.div initial={{ opacity: 0, x: -40, y: -20 }} animate={{ opacity: 1, x: 0, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }} className="hidden lg:flex absolute top-44 left-12 xl:left-24 items-center gap-3 px-4 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-white/60 shadow-2xl shadow-primary/10">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center shadow-lg shadow-primary/40">
-            <Award className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Founded</div>
-            <div className="text-lg font-extrabold text-foreground tracking-tight leading-none mt-0.5">2019</div>
-          </div>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, x: 40, y: -20 }} animate={{ opacity: 1, x: 0, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} className="hidden lg:flex absolute top-52 right-12 xl:right-24 items-center gap-3 px-4 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-white/60 shadow-2xl shadow-primary/10">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/40">
-            <TrendingUp className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Growth YoY</div>
-            <div className="text-lg font-extrabold text-foreground tracking-tight leading-none mt-0.5">+184%</div>
-          </div>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, x: -40, y: 20 }} animate={{ opacity: 1, x: 0, y: 0 }} transition={{ delay: 0.6, duration: 0.6 }} className="hidden lg:flex absolute bottom-16 left-20 xl:left-32 items-center gap-3 px-4 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-white/60 shadow-2xl shadow-primary/10">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/40">
-            <Globe className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Countries</div>
-            <div className="text-lg font-extrabold text-foreground tracking-tight leading-none mt-0.5">14</div>
-          </div>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, x: 40, y: 20 }} animate={{ opacity: 1, x: 0, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="hidden lg:flex absolute bottom-12 right-20 xl:right-32 items-center gap-3 px-4 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-white/60 shadow-2xl shadow-primary/10">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center shadow-lg shadow-violet-500/40">
-            <Users className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Engineers</div>
-            <div className="text-lg font-extrabold text-foreground tracking-tight leading-none mt-0.5">84+</div>
-          </div>
-        </motion.div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl pt-12 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-5xl pt-10 relative">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 shadow-lg shadow-primary/20 text-primary text-sm font-bold mb-6 uppercase tracking-wide mx-auto backdrop-blur-md">
-              <Sparkles className="w-4 h-4" /> THE COMPANY <span className="w-1 h-1 rounded-full bg-primary" /> Est. 2019
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 shadow-lg shadow-primary/10 text-primary text-xs font-bold mb-8 uppercase tracking-[0.2em] mx-auto backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5" /> THE COMPANY <span className="w-1 h-1 rounded-full bg-primary" /> Est. 2019
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 tracking-tight leading-[0.95]">
-              Who We <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-primary via-cyan-300 to-primary bg-clip-text text-transparent">Are</span>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight leading-[1.1]">
+              An AI Automation Company<br />
+              <span className="relative inline-block mt-1">
+                <span className="bg-gradient-to-r from-cyan-400 via-primary to-cyan-300 bg-clip-text text-transparent">for SaaS, Startups, and SMEs</span>
                 <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
-                  <path d="M2 8 Q50 2 100 6 T198 5" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.8" />
+                  <path d="M2 8 Q50 2 100 6 T198 5" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.7" />
                 </svg>
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-3xl mx-auto">
-              We are engineers, designers, and strategists obsessed with building software that runs the world's most demanding operations.
+
+            <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+              Accelerate your roadmap with custom AI-integrated web and mobile ecosystems. We bridge the gap between initial concept and global scale, delivering rapid MVP launches and robust, enterprise-grade SaaS architectures for the next generation of business.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-3 mt-10">
-              <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-sm font-semibold text-white flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> 142 Active Clients
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+              <Link href="/contact">
+                <Button size="lg" data-testid="button-hero-consult" className="rounded-full bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-white font-semibold px-7 py-6 text-base shadow-2xl shadow-primary/40 group">
+                  Book 20-min Consult
+                  <ArrowUpRight className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Button>
+              </Link>
+              <Link href="/company#case-studies">
+                <Button size="lg" variant="outline" data-testid="button-hero-portfolio" className="rounded-full bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30 text-white font-semibold px-7 py-6 text-base backdrop-blur-md group">
+                  View Our Work Portfolios
+                  <ArrowUpRight className="w-5 h-5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mt-12 text-white/80">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <HandCoins className="w-4.5 h-4.5 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">Free Estimate</span>
               </div>
-              <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-sm font-semibold text-white flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-primary" /> ISO 27001 Certified
+              <div className="hidden md:block w-px h-6 bg-white/10" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <FileSignature className="w-4.5 h-4.5 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">Signed with NDA</span>
               </div>
-              <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-sm font-semibold text-white flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-amber-400" /> Tamil Nadu, India
+              <div className="hidden md:block w-px h-6 bg-white/10" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-cyan-500/10 border border-primary/30 flex items-center justify-center">
+                  <ShieldCheck className="w-4.5 h-4.5 text-primary" />
+                </div>
+                <span className="text-sm font-semibold">100% Risk-Free</span>
               </div>
             </div>
           </motion.div>
