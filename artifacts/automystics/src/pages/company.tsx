@@ -14,12 +14,13 @@ export function Company() {
         canonical="/company"
       />
 
-      <div className="absolute top-0 left-0 right-0 h-[800px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/15 via-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute top-32 left-12 w-72 h-72 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-60 right-12 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[800px] bg-gradient-to-br from-[#0B1426] via-[#0F1B33] to-[#11203A] pointer-events-none" />
+      <div className="absolute top-32 left-12 w-72 h-72 bg-primary/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-60 right-12 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent pointer-events-none" />
 
       <div className="pt-36 pb-24 relative z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 dark-grid-pattern opacity-50 pointer-events-none" />
 
         {/* Floating decorative cards */}
         <motion.div initial={{ opacity: 0, x: -40, y: -20 }} animate={{ opacity: 1, x: 0, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }} className="hidden lg:flex absolute top-44 left-12 xl:left-24 items-center gap-3 px-4 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-white/60 shadow-2xl shadow-primary/10">
@@ -64,30 +65,30 @@ export function Company() {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl pt-12 relative">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 via-white to-primary/10 border border-primary/30 shadow-lg shadow-primary/20 text-primary text-sm font-bold mb-6 uppercase tracking-wide mx-auto backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 shadow-lg shadow-primary/20 text-primary text-sm font-bold mb-6 uppercase tracking-wide mx-auto backdrop-blur-md">
               <Sparkles className="w-4 h-4" /> THE COMPANY <span className="w-1 h-1 rounded-full bg-primary" /> Est. 2019
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-foreground mb-6 tracking-tight leading-[0.95]">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 tracking-tight leading-[0.95]">
               Who We <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-primary via-cyan-500 to-primary bg-clip-text text-transparent">Are</span>
+                <span className="bg-gradient-to-r from-primary via-cyan-300 to-primary bg-clip-text text-transparent">Are</span>
                 <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
-                  <path d="M2 8 Q50 2 100 6 T198 5" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.6" />
+                  <path d="M2 8 Q50 2 100 6 T198 5" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.8" />
                 </svg>
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-3xl mx-auto">
               We are engineers, designers, and strategists obsessed with building software that runs the world's most demanding operations.
             </p>
 
             <div className="flex flex-wrap justify-center gap-3 mt-10">
-              <div className="px-4 py-2 rounded-full bg-white border border-card-border shadow-sm text-sm font-semibold text-foreground flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> 142 Active Clients
+              <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-sm font-semibold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> 142 Active Clients
               </div>
-              <div className="px-4 py-2 rounded-full bg-white border border-card-border shadow-sm text-sm font-semibold text-foreground flex items-center gap-2">
+              <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-sm font-semibold text-white flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-primary" /> ISO 27001 Certified
               </div>
-              <div className="px-4 py-2 rounded-full bg-white border border-card-border shadow-sm text-sm font-semibold text-foreground flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-amber-500" /> Tamil Nadu, India
+              <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-sm font-semibold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-400" /> Tamil Nadu, India
               </div>
             </div>
           </motion.div>
