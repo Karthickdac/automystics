@@ -58,6 +58,7 @@ export function Footer() {
               <li><Link href="/products#kural-ai" className="text-sm text-white/60 hover:text-primary transition-colors">Kural AI Voice</Link></li>
               <li><Link href="/products#auto-algo" className="text-sm text-white/60 hover:text-primary transition-colors">Auto Algo Trading</Link></li>
               <li><Link href="/products#scada" className="text-sm text-white/60 hover:text-primary transition-colors">SCADA Monitoring</Link></li>
+              <li><Link href="/products#fitro360" className="text-sm text-white/60 hover:text-primary transition-colors">Fitro360 Gym Mgmt</Link></li>
             </ul>
           </div>
 

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { 
-  Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code,
+  Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell,
   Zap, Shield, Clock, ArrowUpRight, CheckCircle2, Factory, Database,
   Activity, Users, Sparkles, HandCoins, FileSignature, ShieldCheck
 } from "lucide-react";
@@ -18,6 +18,7 @@ const products = [
   { id: "scada", title: "SCADA Monitoring", desc: "Large-scale industrial solar monitoring.", icon: Sun },
   { id: "cctv", title: "CCTV AutoMonitoring", desc: "Real-time AI surveillance and anomaly detection.", icon: Camera },
   { id: "school-management", title: "School Management", desc: "End-to-end modern school administration.", icon: GraduationCap },
+  { id: "fitro360", title: "Fitro360", desc: "All-in-one gym & fitness studio management.", icon: Dumbbell },
   { id: "custom", title: "Custom Software", desc: "Bespoke enterprise applications built fast.", icon: Code }
 ];
 

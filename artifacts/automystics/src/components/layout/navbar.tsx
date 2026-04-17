@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Server, Cloud, Smartphone, Paintbrush, Cog, Workflow, Settings, Users, BookOpen, Briefcase, FileText, HeartHandshake, Database } from "lucide-react";
+import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Server, Cloud, Smartphone, Paintbrush, Cog, Workflow, Settings, Users, BookOpen, Briefcase, FileText, HeartHandshake, Database, Dumbbell } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -31,6 +31,7 @@ const products = [
   { id: "auto-algo", title: "Auto Algo Trading", desc: "High-frequency trading", icon: LineChart },
   { id: "scada", title: "SCADA Monitoring", desc: "Industrial solar monitoring", icon: Sun },
   { id: "cctv", title: "CCTV AutoMonitoring", desc: "Intelligent anomaly detection", icon: Camera },
+  { id: "fitro360", title: "Fitro360", desc: "Gym Management System", icon: Dumbbell },
   { id: "custom", title: "Custom Solutions", desc: "Bespoke applications", icon: Code }
 ];
 

@@ -3,7 +3,7 @@ import { SEO } from "@/components/seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, CheckCircle2, ArrowUpRight, TrendingUp, Users, DollarSign, Activity, AlertCircle, Zap, Database, Shield } from "lucide-react";
+import { Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell, CheckCircle2, ArrowUpRight, TrendingUp, Users, DollarSign, Activity, AlertCircle, Zap, Database, Shield, HeartPulse, CalendarCheck } from "lucide-react";
 import { Link } from "wouter";
 
 const allProducts = [
@@ -62,6 +62,14 @@ const allProducts = [
     description: "Intelligent video analytics that transform passive surveillance cameras into active security and operational monitoring systems.",
     icon: Camera,
     features: ["Intrusion detection", "Safety gear compliance", "Object tracking", "Automated incident alerts"]
+  },
+  {
+    id: "fitro360",
+    title: "Fitro360 — Gym Management System",
+    category: "Health & Fitness",
+    description: "An all-in-one operating system for modern gyms, fitness studios, and wellness chains. Fitro360 unifies member onboarding, biometric attendance, billing, trainer scheduling, diet & workout plans, and franchise analytics in a single fast platform.",
+    icon: Dumbbell,
+    features: ["Member CRM & onboarding", "Biometric & RFID attendance", "Automated billing & dunning", "Trainer scheduling & PT plans", "Diet, workout & progress tracking", "Multi-branch franchise analytics"]
   },
   {
     id: "custom",
@@ -223,6 +231,31 @@ function ProductPreview({ id }: { id: string }) {
           </div>
           <StatBlock label="PPE Compliance" value="97.8%" sub="Site avg" />
           <StatBlock label="False Positives" value="0.4%" sub="Industry low" />
+        </div>
+      );
+    case "fitro360":
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="Active Members" value="48,210" sub="↑ 22.4% MoM" />
+          <StatBlock label="Monthly Revenue" value="₹2.84 Cr" sub="↑ 31% YoY" accent="text-emerald-400" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Daily Check-ins (last 12 days)</div>
+              <div className="text-[10px] font-bold text-emerald-400 flex items-center gap-1"><HeartPulse className="w-3 h-3" /> 6,142 today</div>
+            </div>
+            <MiniBars data={[3820, 4210, 4580, 5120, 4920, 5340, 5680, 5910, 6020, 5780, 6240, 6142]} />
+          </div>
+          <StatBlock label="Retention 90d" value="86.3%" sub="Industry: 64%" accent="text-emerald-400" />
+          <StatBlock label="PT Sessions" value="12,486" sub="This month" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold flex items-center gap-1.5"><CalendarCheck className="w-3 h-3" /> Class Occupancy</div>
+              <div className="text-[10px] font-bold text-primary">94% avg</div>
+            </div>
+            <MiniLine points={[68, 72, 78, 82, 79, 86, 88, 92, 95, 91, 96, 94]} />
+          </div>
+          <StatBlock label="Branches Live" value="38" sub="14 cities" />
+          <StatBlock label="Trainer Rating" value="4.82★" sub="Avg across staff" accent="text-amber-400" />
         </div>
       );
     case "custom":
