@@ -14,6 +14,8 @@ import { Company } from "@/pages/company";
 import { Contact } from "@/pages/contact";
 import { Privacy } from "@/pages/privacy";
 import { Terms } from "@/pages/terms";
+import { AdminLogin } from "@/pages/admin-login";
+import { AdminDashboard } from "@/pages/admin-dashboard";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -51,6 +53,8 @@ function Router() {
         <Route path="/contact" component={Contact} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
+        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin" component={AdminDashboard} />
         <Route component={NotFound} />
       </Switch>
     </>

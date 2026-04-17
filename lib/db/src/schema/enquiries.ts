@@ -1,5 +1,4 @@
 import { pgTable, text, serial, timestamp, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const enquiriesTable = pgTable("enquiries", {
@@ -15,13 +14,13 @@ export const enquiriesTable = pgTable("enquiries", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
-export const insertEnquirySchema = createInsertSchema(enquiriesTable, {
+export const insertEnquirySchema = z.object({
   firstName: z.string().trim().min(1).max(120),
   lastName: z.string().trim().min(1).max(120),
   email: z.string().trim().email().max(255),
   company: z.string().trim().max(255).optional().or(z.literal("")),
   message: z.string().trim().min(5).max(5000),
-}).pick({ firstName: true, lastName: true, email: true, company: true, message: true });
+});
 
 export type InsertEnquiry = z.infer<typeof insertEnquirySchema>;
 export type Enquiry = typeof enquiriesTable.$inferSelect;

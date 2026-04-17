@@ -5,6 +5,7 @@ import { logger } from "./logger";
 
 const DEFAULT_USERNAME = (process.env.ADMIN_USERNAME || "admin").toLowerCase();
 const DEFAULT_PASSWORD = process.env.ADMIN_PASSWORD || "Automystics@2026";
+const USING_DEFAULT_PASSWORD = !process.env.ADMIN_PASSWORD;
 
 export async function ensureDefaultAdmin(): Promise<void> {
   try {
@@ -23,6 +24,11 @@ export async function ensureDefaultAdmin(): Promise<void> {
       passwordHash: hash,
     });
     logger.info({ username: DEFAULT_USERNAME }, "default admin seeded");
+    if (USING_DEFAULT_PASSWORD) {
+      logger.warn(
+        "ADMIN_PASSWORD env var not set — seeded admin with built-in default password. Set ADMIN_PASSWORD before deploying to production.",
+      );
+    }
   } catch (err) {
     logger.error({ err }, "failed to seed default admin");
   }

@@ -13,18 +13,42 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      firstName: String(data.get("firstName") || "").trim(),
+      lastName: String(data.get("lastName") || "").trim(),
+      email: String(data.get("email") || "").trim(),
+      company: String(data.get("company") || "").trim(),
+      message: String(data.get("message") || "").trim(),
+    };
     setIsSubmitting(true);
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error || "request_failed");
+      }
       setIsSuccess(true);
       toast({
         title: "Message received",
         description: "Our team will get back to you within 24 hours.",
       });
-    }, 1500);
+    } catch (err) {
+      toast({
+        title: "Could not send your message",
+        description: "Please try again in a moment, or email us directly at hello@automystics.com.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,28 +108,29 @@ export function Contact() {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-3">
                       <Label htmlFor="firstName" className="text-foreground font-semibold ml-1">First Name</Label>
-                      <Input id="firstName" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="John" />
+                      <Input id="firstName" name="firstName" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="John" />
                     </div>
                     <div className="space-y-3">
                       <Label htmlFor="lastName" className="text-foreground font-semibold ml-1">Last Name</Label>
-                      <Input id="lastName" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Doe" />
+                      <Input id="lastName" name="lastName" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Doe" />
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <Label htmlFor="email" className="text-foreground font-semibold ml-1">Work Email</Label>
-                    <Input id="email" type="email" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="john@company.com" />
+                    <Input id="email" name="email" type="email" required className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="john@company.com" />
                   </div>
 
                   <div className="space-y-3">
                     <Label htmlFor="company" className="text-foreground font-semibold ml-1">Company</Label>
-                    <Input id="company" className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Acme Corp" />
+                    <Input id="company" name="company" className="bg-white border-card-border focus-visible:ring-primary h-14 rounded-2xl px-4 text-lg shadow-sm" placeholder="Acme Corp" />
                   </div>
 
                   <div className="space-y-3">
                     <Label htmlFor="message" className="text-foreground font-semibold ml-1">Project Details</Label>
                     <Textarea 
                       id="message" 
+                      name="message"
                       required 
                       className="min-h-[160px] bg-white border-card-border focus-visible:ring-primary resize-none rounded-2xl p-4 text-lg shadow-sm" 
                       placeholder="Tell us about the software you need..."

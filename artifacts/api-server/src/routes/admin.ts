@@ -17,10 +17,53 @@ const loginSchema = z.object({
   password: z.string().min(1).max(255),
 });
 
+const loginAttempts = new Map<string, { count: number; firstAt: number; lockedUntil: number }>();
+const WINDOW_MS = 15 * 60 * 1000;
+const MAX_ATTEMPTS = 8;
+const LOCK_MS = 15 * 60 * 1000;
+
+function attemptKey(req: import("express").Request, username: string): string {
+  const ip = (req.ip || req.socket.remoteAddress || "unknown").toString();
+  return `${ip}|${username.toLowerCase()}`;
+}
+
+function checkLock(key: string): { locked: boolean; retryAfter?: number } {
+  const rec = loginAttempts.get(key);
+  if (!rec) return { locked: false };
+  const now = Date.now();
+  if (rec.lockedUntil > now) {
+    return { locked: true, retryAfter: Math.ceil((rec.lockedUntil - now) / 1000) };
+  }
+  if (now - rec.firstAt > WINDOW_MS) {
+    loginAttempts.delete(key);
+  }
+  return { locked: false };
+}
+
+function recordFailure(key: string): void {
+  const now = Date.now();
+  const rec = loginAttempts.get(key);
+  if (!rec || now - rec.firstAt > WINDOW_MS) {
+    loginAttempts.set(key, { count: 1, firstAt: now, lockedUntil: 0 });
+    return;
+  }
+  rec.count += 1;
+  if (rec.count >= MAX_ATTEMPTS) {
+    rec.lockedUntil = now + LOCK_MS;
+  }
+}
+
 router.post("/login", async (req, res) => {
   const parsed = loginSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: "validation_failed" });
+    return;
+  }
+  const key = attemptKey(req, parsed.data.username);
+  const lock = checkLock(key);
+  if (lock.locked) {
+    res.setHeader("Retry-After", String(lock.retryAfter ?? 900));
+    res.status(429).json({ error: "too_many_attempts", retryAfter: lock.retryAfter });
     return;
   }
   const [user] = await db
@@ -30,16 +73,19 @@ router.post("/login", async (req, res) => {
     .limit(1);
 
   if (!user) {
+    recordFailure(key);
     res.status(401).json({ error: "invalid_credentials" });
     return;
   }
 
   const ok = await bcrypt.compare(parsed.data.password, user.passwordHash);
   if (!ok) {
+    recordFailure(key);
     res.status(401).json({ error: "invalid_credentials" });
     return;
   }
 
+  loginAttempts.delete(key);
   req.session.adminId = user.id;
   req.session.adminUsername = user.username;
   req.session.save((err) => {
