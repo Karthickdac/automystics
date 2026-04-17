@@ -3,6 +3,7 @@ import { SEO } from "@/components/seo";
 import { motion } from "framer-motion";
 import { Users, Workflow, Briefcase, BookOpen, FileText, HeartHandshake, CheckCircle2, Cloud, Shield, Cpu, GraduationCap, Building } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { StatBlock, MiniBars, MiniLine, PreviewCard } from "@/components/dashboard-preview";
 
 export function Company() {
   return (
@@ -60,13 +61,18 @@ export function Company() {
                 </div>
               </div>
               <div className="flex-1 w-full">
-                <Card className="bg-white border-card-border shadow-xl rounded-[2.5rem] aspect-[4/3] flex items-center justify-center overflow-hidden relative group p-4">
-                  <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-                  <div className="relative z-10 w-full h-full bg-white/80 backdrop-blur-md rounded-[2rem] border border-card-border shadow-sm flex items-center justify-center">
-                    <Building className="w-32 h-32 text-primary/40" />
+                <PreviewCard title="Automystics, Inc." kicker="Company Snapshot" icon={Building}>
+                  <div className="grid grid-cols-2 gap-3">
+                    <StatBlock label="Founded" value="2019" sub="Tamil Nadu" />
+                    <StatBlock label="Engineers" value="84+" sub="Hand-picked" accent="text-emerald-400" />
+                    <StatBlock label="Clients" value="142" sub="Enterprise" />
+                    <StatBlock label="Retention" value="98%" sub="Multi-year" accent="text-emerald-400" />
+                    <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+                      <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Annual Growth</div>
+                      <MiniLine points={[20, 32, 48, 62, 78, 96, 118, 142, 168, 192, 224, 268]} />
+                    </div>
                   </div>
-                </Card>
+                </PreviewCard>
               </div>
             </motion.div>
 
@@ -99,13 +105,18 @@ export function Company() {
                 </div>
               </div>
               <div className="flex-1 w-full">
-                <Card className="bg-white border-card-border shadow-xl rounded-[2.5rem] aspect-[4/3] flex items-center justify-center overflow-hidden relative group p-4">
-                  <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-                  <div className="relative z-10 w-full h-full bg-white/80 backdrop-blur-md rounded-[2rem] border border-card-border shadow-sm flex items-center justify-center">
-                    <Workflow className="w-32 h-32 text-primary/40" />
+                <PreviewCard title="Delivery Pipeline" kicker="Process Metrics" icon={Workflow}>
+                  <div className="grid grid-cols-2 gap-3">
+                    <StatBlock label="Avg Delivery" value="6.2 wk" sub="↓ 60% faster" accent="text-emerald-400" />
+                    <StatBlock label="On-time" value="96.4%" sub="Sprint commits" />
+                    <StatBlock label="Code Review" value="100%" sub="Coverage" />
+                    <StatBlock label="Test Coverage" value="92%" sub="Avg across repos" accent="text-emerald-400" />
+                    <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+                      <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Sprint Velocity (story pts)</div>
+                      <MiniBars data={[42, 51, 58, 64, 72, 78, 84, 91, 88, 96, 102, 118]} />
+                    </div>
                   </div>
-                </Card>
+                </PreviewCard>
               </div>
             </motion.div>
 
@@ -132,13 +143,18 @@ export function Company() {
                 </div>
               </div>
               <div className="flex-1 w-full">
-                <Card className="bg-white border-card-border shadow-xl rounded-[2.5rem] aspect-[4/3] flex items-center justify-center overflow-hidden relative group p-4">
-                  <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-                  <div className="relative z-10 w-full h-full bg-white/80 backdrop-blur-md rounded-[2rem] border border-card-border shadow-sm flex items-center justify-center">
-                    <Briefcase className="w-32 h-32 text-primary/40" />
+                <PreviewCard title="Talent Pipeline" kicker="Hiring Snapshot" icon={Briefcase}>
+                  <div className="grid grid-cols-2 gap-3">
+                    <StatBlock label="Open Roles" value="12" sub="Across teams" accent="text-emerald-400" />
+                    <StatBlock label="Applicants" value="2,840" sub="This quarter" />
+                    <StatBlock label="Avg Tenure" value="3.4 yrs" sub="Engineering" />
+                    <StatBlock label="Remote" value="68%" sub="Distributed" accent="text-emerald-400" />
+                    <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+                      <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Headcount Growth</div>
+                      <MiniBars data={[12, 18, 22, 28, 34, 42, 48, 56, 64, 72, 78, 84]} />
+                    </div>
                   </div>
-                </Card>
+                </PreviewCard>
               </div>
             </motion.div>
 
