@@ -3,7 +3,7 @@ import { SEO } from "@/components/seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, CheckCircle2, ArrowUpRight } from "lucide-react";
+import { Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, CheckCircle2, ArrowUpRight, TrendingUp, Users, DollarSign, Activity, AlertCircle, Zap, Database, Shield } from "lucide-react";
 import { Link } from "wouter";
 
 const allProducts = [
@@ -72,6 +72,178 @@ const allProducts = [
     features: ["Cloud-native architecture", "Legacy system modernization", "API design & integration", "Scalable microservices"]
   }
 ];
+
+function StatBlock({ label, value, accent, sub }: { label: string; value: string; accent?: string; sub?: string }) {
+  return (
+    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+      <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">{label}</div>
+      <div className="text-xl font-extrabold text-white mt-1 tracking-tight">{value}</div>
+      {sub && <div className={`text-[10px] font-bold mt-0.5 ${accent || "text-primary"}`}>{sub}</div>}
+    </div>
+  );
+}
+
+function MiniBars({ data, color = "bg-primary" }: { data: number[]; color?: string }) {
+  const max = Math.max(...data);
+  return (
+    <div className="flex items-end gap-1 h-10">
+      {data.map((v, i) => (
+        <div key={i} className={`flex-1 ${color} rounded-sm opacity-80`} style={{ height: `${(v / max) * 100}%` }} />
+      ))}
+    </div>
+  );
+}
+
+function MiniLine({ points, height = 40 }: { points: number[]; height?: number }) {
+  const max = Math.max(...points);
+  const min = Math.min(...points);
+  const range = max - min || 1;
+  const path = points.map((p, i) => {
+    const x = (i / (points.length - 1)) * 100;
+    const y = height - ((p - min) / range) * height;
+    return `${i === 0 ? "M" : "L"}${x},${y}`;
+  }).join(" ");
+  const area = `${path} L100,${height} L0,${height} Z`;
+  return (
+    <svg viewBox={`0 0 100 ${height}`} className="w-full" style={{ height }} preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="ar" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={area} fill="url(#ar)" />
+      <path d={path} stroke="hsl(var(--primary))" strokeWidth="2" fill="none" />
+    </svg>
+  );
+}
+
+function ProductPreview({ id }: { id: string }) {
+  switch (id) {
+    case "chit-fund":
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="Total AUM" value="₹128.4 Cr" sub="↑ 18.4% YoY" />
+          <StatBlock label="Active Members" value="45,672" sub="↑ 1,204 this mo" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Monthly Collection</div>
+              <div className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">98.7% on time</div>
+            </div>
+            <MiniLine points={[42, 48, 45, 58, 62, 71, 68, 79, 84, 92, 88, 96]} />
+          </div>
+          <StatBlock label="Compliance" value="100%" sub="RBI · KYC · AML" />
+          <StatBlock label="Schemes" value="64" sub="12 maturing" />
+        </div>
+      );
+    case "school-management":
+    case "kalvicore":
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="Students" value={id === "kalvicore" ? "12,840" : "3,247"} sub="↑ 8% enrolled" />
+          <StatBlock label="Attendance" value="94.2%" sub="Today" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Fee Collection (12mo)</div>
+              <div className="text-[10px] font-bold text-primary">₹4.8 Cr</div>
+            </div>
+            <MiniBars data={[55, 78, 62, 88, 71, 94, 82, 76, 91, 84, 96, 89]} />
+          </div>
+          <StatBlock label="Faculty" value={id === "kalvicore" ? "428" : "186"} sub="Active staff" />
+          <StatBlock label="Pass Rate" value="96.4%" sub="Last semester" />
+        </div>
+      );
+    case "kural-ai":
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="Calls Handled" value="284,120" sub="↑ 32% wk" />
+          <StatBlock label="Accuracy" value="98.4%" sub="Intent match" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Live Voice Activity</div>
+              <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> LIVE
+              </div>
+            </div>
+            <div className="flex items-center gap-0.5 h-10">
+              {[3, 6, 9, 4, 11, 7, 14, 9, 5, 12, 8, 15, 10, 6, 13, 9, 7, 11, 4, 8, 12, 6, 9, 14, 8, 5, 10].map((h, i) => (
+                <div key={i} className="flex-1 bg-primary rounded-full" style={{ height: `${h * 6}%` }} />
+              ))}
+            </div>
+          </div>
+          <StatBlock label="Languages" value="14" sub="Multi-lingual" />
+          <StatBlock label="Avg Resolve" value="42s" sub="↓ 68% vs human" />
+        </div>
+      );
+    case "auto-algo":
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="P&L Today" value="+$48,290" sub="↑ 4.7%" accent="text-emerald-400" />
+          <StatBlock label="Win Rate" value="71.2%" sub="Last 30d" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Equity Curve</div>
+              <div className="text-[10px] font-bold text-emerald-400">Sharpe 2.84</div>
+            </div>
+            <MiniLine points={[20, 28, 24, 35, 42, 38, 51, 58, 54, 67, 74, 82, 78, 89]} />
+          </div>
+          <StatBlock label="Latency" value="0.8ms" sub="Order to fill" />
+          <StatBlock label="Strategies" value="32" sub="14 live" />
+        </div>
+      );
+    case "scada":
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="Power Output" value="128.4 MW" sub="Real-time" accent="text-emerald-400" />
+          <StatBlock label="Plant Uptime" value="99.96%" sub="Last 30d" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Generation 24h</div>
+              <div className="text-[10px] font-bold text-primary">2.84 GWh</div>
+            </div>
+            <MiniBars data={[5, 12, 28, 48, 72, 92, 96, 88, 76, 58, 32, 12]} />
+          </div>
+          <StatBlock label="Inverters" value="412" sub="408 healthy" />
+          <StatBlock label="Alerts" value="3" sub="Predictive" accent="text-amber-400" />
+        </div>
+      );
+    case "cctv":
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="Cameras" value="1,284" sub="All online" accent="text-emerald-400" />
+          <StatBlock label="Detections" value="48.2K" sub="Last 24h" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Event Timeline</div>
+              <div className="flex items-center gap-1 text-[10px] font-bold text-rose-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" /> 2 ALERTS
+              </div>
+            </div>
+            <MiniLine points={[12, 18, 14, 28, 22, 34, 42, 38, 52, 48, 64, 58]} />
+          </div>
+          <StatBlock label="PPE Compliance" value="97.8%" sub="Site avg" />
+          <StatBlock label="False Positives" value="0.4%" sub="Industry low" />
+        </div>
+      );
+    case "custom":
+    default:
+      return (
+        <div className="w-full grid grid-cols-2 gap-3">
+          <StatBlock label="Projects Live" value="150+" sub="Enterprise" />
+          <StatBlock label="Avg Delivery" value="6.2 wk" sub="↓ 60% vs market" accent="text-emerald-400" />
+          <div className="col-span-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3">
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Velocity (sprints)</div>
+              <div className="text-[10px] font-bold text-primary">+38% QoQ</div>
+            </div>
+            <MiniBars data={[42, 58, 51, 68, 74, 82, 78, 88, 92, 86, 95, 98]} />
+          </div>
+          <StatBlock label="Uptime SLA" value="99.99%" sub="Production" />
+          <StatBlock label="Tech Stack" value="40+" sub="Frameworks" />
+        </div>
+      );
+  }
+}
 
 export function Products() {
   return (
@@ -157,11 +329,17 @@ export function Products() {
                       <div className="w-2 h-2 rounded-full bg-primary/60 animate-pulse" style={{ animationDelay: "0.3s" }} />
                       <div className="w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ animationDelay: "0.6s" }} />
                     </div>
-                    <div className="relative z-10 flex flex-col items-center justify-center gap-5">
-                      <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 group-hover:rotate-3 transition-all duration-700">
-                        <product.icon className="w-16 h-16 text-white" />
+                    <div className="relative z-10 w-full px-5 pt-12 pb-5">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center shadow-lg shadow-primary/40">
+                          <product.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <div className="text-white font-bold text-sm tracking-tight leading-tight">{product.title}</div>
+                          <div className="text-[10px] text-white/50 font-semibold uppercase tracking-wider">Dashboard</div>
+                        </div>
                       </div>
-                      <div className="text-white font-bold text-xl tracking-tight">{product.title.split(" ")[0]}</div>
+                      <ProductPreview id={product.id} />
                     </div>
                   </Card>
                 </div>
