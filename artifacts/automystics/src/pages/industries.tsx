@@ -2,7 +2,101 @@ import React from "react";
 import { SEO } from "@/components/seo";
 import { motion } from "framer-motion";
 import { Building2, GraduationCap, Cog, Sun, HeartHandshake, Smartphone, Workflow, CheckCircle2 } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { StatBlock, MiniBars, MiniLine, PreviewCard } from "@/components/dashboard-preview";
+
+function IndustryPreview({ id }: { id: string }) {
+  switch (id) {
+    case "finance":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Tx / sec" value="48,200" sub="Peak load" accent="text-emerald-400" />
+          <StatBlock label="Fraud Caught" value="₹4.2 Cr" sub="This quarter" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Daily Transaction Volume</div>
+            <MiniLine points={[200, 280, 340, 320, 410, 480, 520, 600, 580, 720, 810, 920]} />
+          </div>
+        </div>
+      );
+    case "education":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Institutions" value="84" sub="Live deployments" />
+          <StatBlock label="Students" value="2.4 L+" sub="Managed" accent="text-emerald-400" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Enrollment Growth</div>
+            <MiniBars data={[42, 51, 58, 64, 72, 78, 84, 91, 88, 96, 102, 118]} />
+          </div>
+        </div>
+      );
+    case "manufacturing":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="OEE" value="92.4%" sub="Plant efficiency" accent="text-emerald-400" />
+          <StatBlock label="Downtime" value="↓ 68%" sub="vs baseline" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Production Output 24h</div>
+            <MiniBars data={[58, 72, 84, 76, 91, 88, 95, 82, 96, 89, 94, 98]} />
+          </div>
+        </div>
+      );
+    case "energy":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Grid Output" value="284 MW" sub="Real-time" accent="text-emerald-400" />
+          <StatBlock label="Plants" value="42" sub="Monitored" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Solar Generation Curve</div>
+            <MiniLine points={[5, 12, 28, 48, 72, 92, 96, 88, 76, 58, 32, 12]} />
+          </div>
+        </div>
+      );
+    case "healthcare":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Patient Records" value="1.8M+" sub="HIPAA secure" accent="text-emerald-400" />
+          <StatBlock label="Telemed Visits" value="48,200" sub="This month" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Appointment Volume</div>
+            <MiniLine points={[120, 142, 168, 154, 184, 196, 218, 234, 248, 268, 284, 312]} />
+          </div>
+        </div>
+      );
+    case "retail":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="GMV" value="$12.4M" sub="Last 30d" accent="text-emerald-400" />
+          <StatBlock label="Conversion" value="4.8%" sub="↑ 1.2pp" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Daily Orders</div>
+            <MiniBars data={[68, 84, 76, 92, 104, 88, 116, 98, 124, 112, 134, 148]} />
+          </div>
+        </div>
+      );
+    case "logistics":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="On-Time" value="98.4%" sub="Delivery rate" accent="text-emerald-400" />
+          <StatBlock label="Fleet" value="2,840" sub="Active vehicles" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Routes Optimized</div>
+            <MiniLine points={[140, 168, 192, 220, 248, 272, 308, 342, 378, 412, 448, 488]} />
+          </div>
+        </div>
+      );
+    case "real-estate":
+    default:
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Properties" value="12,840" sub="Under mgmt" accent="text-emerald-400" />
+          <StatBlock label="Occupancy" value="94.2%" sub="Portfolio avg" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Rental Yield Trend</div>
+            <MiniBars data={[42, 48, 52, 58, 62, 68, 74, 78, 82, 86, 91, 96]} />
+          </div>
+        </div>
+      );
+  }
+}
 
 const industries = [
   { 
@@ -126,13 +220,9 @@ export function Industries() {
                 </div>
                 
                 <div className="flex-1 w-full">
-                  <Card className="bg-white border-card-border shadow-xl rounded-[2.5rem] aspect-[4/3] flex items-center justify-center overflow-hidden relative group p-4 hover:border-primary/50 transition-colors duration-500">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px] group-hover:bg-primary/20 transition-colors duration-500" />
-                    <div className="relative z-10 w-full h-full bg-white/80 backdrop-blur-md rounded-[2rem] border border-card-border shadow-sm flex items-center justify-center">
-                      <industry.icon className="w-32 h-32 text-primary/40 group-hover:scale-110 group-hover:text-primary transition-all duration-700" />
-                    </div>
-                  </Card>
+                  <PreviewCard title={industry.title} kicker="Industry Metrics" icon={industry.icon}>
+                    <IndustryPreview id={industry.id} />
+                  </PreviewCard>
                 </div>
               </motion.div>
             ))}

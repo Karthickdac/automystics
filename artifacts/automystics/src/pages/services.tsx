@@ -2,7 +2,101 @@ import React from "react";
 import { SEO } from "@/components/seo";
 import { motion } from "framer-motion";
 import { Code, Server, Smartphone, Workflow, Cloud, Paintbrush, Settings, Cog, CheckCircle2 } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { StatBlock, MiniBars, MiniLine, PreviewCard } from "@/components/dashboard-preview";
+
+function ServicePreview({ id }: { id: string }) {
+  switch (id) {
+    case "custom-software":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Projects Live" value="150+" sub="Enterprise" />
+          <StatBlock label="Avg Delivery" value="6.2 wk" sub="↓ 60% vs market" accent="text-emerald-400" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Sprint Velocity</div>
+            <MiniBars data={[42, 58, 51, 68, 74, 82, 78, 88, 92, 86, 95, 98]} />
+          </div>
+        </div>
+      );
+    case "web-dev":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="PageSpeed" value="98/100" sub="Lighthouse" accent="text-emerald-400" />
+          <StatBlock label="TTFB" value="84ms" sub="Global avg" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Daily Requests</div>
+            <MiniLine points={[120, 180, 240, 320, 280, 410, 480, 520, 600, 580, 720, 840]} />
+          </div>
+        </div>
+      );
+    case "mobile-dev":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="App Rating" value="4.8 ★" sub="iOS + Android" accent="text-emerald-400" />
+          <StatBlock label="Crash Free" value="99.92%" sub="Sessions" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Active Users (30d)</div>
+            <MiniBars data={[28, 34, 42, 38, 51, 64, 58, 72, 81, 78, 89, 94]} />
+          </div>
+        </div>
+      );
+    case "ai-integration":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Models Deployed" value="84" sub="Production" />
+          <StatBlock label="Inference" value="120ms" sub="P95 latency" accent="text-emerald-400" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Tokens / sec</div>
+            <MiniLine points={[200, 260, 240, 320, 380, 420, 460, 520, 580, 640, 720, 810]} />
+          </div>
+        </div>
+      );
+    case "cloud-devops":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Deploy Freq" value="42/day" sub="Across stack" accent="text-emerald-400" />
+          <StatBlock label="MTTR" value="8 min" sub="↓ from 4 hrs" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">CI/CD Pipeline Runs</div>
+            <MiniBars data={[64, 72, 58, 84, 91, 78, 96, 88, 102, 94, 118, 124]} />
+          </div>
+        </div>
+      );
+    case "ui-ux":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Conversion" value="+38%" sub="Avg lift" accent="text-emerald-400" />
+          <StatBlock label="Task Success" value="94.6%" sub="Usability tests" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">User Engagement</div>
+            <MiniLine points={[40, 48, 55, 62, 70, 68, 78, 85, 82, 91, 96, 102]} />
+          </div>
+        </div>
+      );
+    case "api-integration":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Uptime" value="99.99%" sub="API SLA" accent="text-emerald-400" />
+          <StatBlock label="Endpoints" value="284" sub="REST + GraphQL" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">Calls / minute</div>
+            <MiniBars data={[120, 145, 132, 168, 184, 152, 196, 178, 212, 198, 234, 256]} />
+          </div>
+        </div>
+      );
+    case "maintenance":
+    default:
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <StatBlock label="Response Time" value="< 5 min" sub="Critical issues" accent="text-emerald-400" />
+          <StatBlock label="Tickets Closed" value="1,847" sub="This month" />
+          <div className="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3">
+            <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-2">System Health 24h</div>
+            <MiniLine points={[92, 94, 91, 95, 97, 96, 98, 97, 99, 98, 99, 99]} />
+          </div>
+        </div>
+      );
+  }
+}
 
 const services = [
   { 
@@ -127,13 +221,9 @@ export function Services() {
                 </div>
                 
                 <div className="flex-1 w-full">
-                  <Card className="bg-white border-card-border shadow-xl rounded-[2.5rem] aspect-[4/3] flex items-center justify-center overflow-hidden relative group p-4 hover:border-primary/50 transition-colors duration-500">
-                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[100px] group-hover:bg-primary/20 transition-colors duration-500" />
-                    <div className="relative z-10 w-full h-full bg-white/80 backdrop-blur-md rounded-[2rem] border border-card-border shadow-sm flex items-center justify-center">
-                      <service.icon className="w-32 h-32 text-primary/40 group-hover:scale-110 group-hover:text-primary transition-all duration-700" />
-                    </div>
-                  </Card>
+                  <PreviewCard title={service.title} kicker="Service Metrics" icon={service.icon}>
+                    <ServicePreview id={service.id} />
+                  </PreviewCard>
                 </div>
               </motion.div>
             ))}
