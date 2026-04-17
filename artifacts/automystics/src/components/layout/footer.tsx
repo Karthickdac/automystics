@@ -32,7 +32,10 @@ export function Footer() {
               <div className="bg-white p-1 rounded-full w-10 h-10 flex items-center justify-center overflow-hidden inline-flex">
                 <img src="/logo.jpeg" alt="Automystics Logo" className="w-8 h-8 object-contain mix-blend-multiply" />
               </div>
-              <span className="text-2xl font-bold tracking-tight text-white">Automystics</span>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xl font-bold tracking-tight text-white">Automystics Technologies</span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary mt-1">Private Limited</span>
+              </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               We engineer competitive advantages. Mission-critical enterprise applications delivered with unprecedented speed and precision.
