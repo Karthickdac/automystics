@@ -143,7 +143,7 @@ export function Home() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
                 <Link href={`/products#${product.id}`} className="block h-full group" data-testid={`product-tile-${product.id}`}>
-                  <div className="relative h-full bg-[#0B1426] rounded-3xl border border-white/10 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/30 hover:border-primary/50">
+                  <div className="relative h-full bg-[#334155] rounded-3xl border border-white/10 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/30 hover:border-primary/50">
                     {/* Top gradient accent bar */}
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-cyan-400 to-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
                     
