@@ -324,26 +324,56 @@ export function Home() {
             <p className="text-xl text-muted-foreground">A streamlined approach that guarantees delivery in record time without compromising quality.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-card-border -translate-y-1/2" />
-            
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+            {/* Dashed connector line behind cards */}
+            <div className="hidden md:block absolute top-16 left-[12%] right-[12%] h-px border-t-2 border-dashed border-primary/30" />
+
             {[
-              { num: "01", title: "Discover", desc: "Deep dive into requirements and architecture planning." },
-              { num: "02", title: "Design", desc: "UI/UX wireframing and scalable database schema design." },
-              { num: "03", title: "Build", desc: "Rapid iterative development using advanced AI tooling." },
-              { num: "04", title: "Deliver", desc: "Rigorous testing, deployment, and ongoing support." }
+              { num: "01", title: "Discover", desc: "Deep dive into requirements and architecture planning.", icon: Database, time: "1-2 weeks", deliverables: ["Requirements doc", "Tech architecture", "Project roadmap"] },
+              { num: "02", title: "Design", desc: "UI/UX wireframing and scalable database schema design.", icon: Code, time: "2-3 weeks", deliverables: ["Wireframes & UI", "Database schema", "API contracts"] },
+              { num: "03", title: "Build", desc: "Rapid iterative development using advanced AI tooling.", icon: Zap, time: "4-8 weeks", deliverables: ["Working software", "Weekly demos", "QA & testing"] },
+              { num: "04", title: "Deliver", desc: "Rigorous testing, deployment, and ongoing support.", icon: CheckCircle2, time: "Ongoing", deliverables: ["Production deploy", "Documentation", "24/7 support"] }
             ].map((step, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative z-10 bg-white border border-card-border shadow-sm rounded-3xl p-8 card-hover-effect"
+                className="relative z-10 group"
               >
-                <div className="text-5xl font-extrabold text-primary/10 mb-6">{step.num}</div>
-                <h4 className="text-xl font-bold text-foreground mb-3">{step.title}</h4>
-                <p className="text-sm text-muted-foreground">{step.desc}</p>
+                {/* Step number circle on top */}
+                <div className="absolute left-1/2 -translate-x-1/2 -top-1 z-20">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center shadow-lg shadow-primary/30 border-4 border-white">
+                    <step.icon className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+
+                <div className="relative bg-white border border-card-border shadow-md hover:shadow-2xl hover:shadow-primary/10 rounded-3xl pt-12 pb-7 px-7 transition-all duration-500 hover:-translate-y-2 hover:border-primary/40 h-full overflow-hidden">
+                  {/* Watermark step number */}
+                  <div className="absolute top-3 right-5 text-6xl font-extrabold text-primary/5 select-none leading-none">{step.num}</div>
+
+                  <div className="relative">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-2.5 py-1 rounded-full">Step {step.num}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                        <Clock className="w-3 h-3" /> {step.time}
+                      </span>
+                    </div>
+
+                    <h4 className="text-2xl font-extrabold text-foreground mb-2 tracking-tight">{step.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-5">{step.desc}</p>
+
+                    <div className="space-y-2 pt-4 border-t border-card-border">
+                      {step.deliverables.map((d, j) => (
+                        <div key={j} className="flex items-center gap-2 text-xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                          <span className="text-foreground/80 font-medium">{d}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
