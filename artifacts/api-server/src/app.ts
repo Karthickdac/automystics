@@ -1,3 +1,5 @@
+import path from "node:path";
+import fs from "node:fs";
 import express, { type Express } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
@@ -59,6 +61,35 @@ app.use(
 );
 
 app.use("/api", router);
+
+const staticDir =
+  process.env.STATIC_DIR ??
+  path.resolve(process.cwd(), "artifacts/automystics/dist/public");
+
+if (fs.existsSync(staticDir)) {
+  logger.info({ staticDir }, "Serving static frontend");
+  app.use(
+    express.static(staticDir, {
+      index: false,
+      setHeaders: (res, filePath) => {
+        if (filePath.includes(`${path.sep}assets${path.sep}`)) {
+          res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        } else {
+          res.setHeader("Cache-Control", "no-cache");
+        }
+      },
+    }),
+  );
+
+  app.get(/^\/(?!api\/).*/, (_req, res, next) => {
+    const indexFile = path.join(staticDir, "index.html");
+    if (!fs.existsSync(indexFile)) return next();
+    res.setHeader("Cache-Control", "no-cache");
+    res.sendFile(indexFile);
+  });
+} else {
+  logger.warn({ staticDir }, "Static frontend dir not found; skipping SPA serving");
+}
 
 void ensureDefaultAdmin();
 
