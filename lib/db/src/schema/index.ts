@@ -19,3 +19,4 @@
 
 export * from "./enquiries";
 export * from "./admin-users";
+export * from "./email-settings";

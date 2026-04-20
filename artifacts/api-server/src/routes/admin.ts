@@ -9,8 +9,11 @@ import {
   updateEnquirySchema,
 } from "@workspace/db";
 import { requireAdmin } from "../middlewares/auth";
+import emailSettingsRouter from "./admin-email";
 
 const router: IRouter = Router();
+
+router.use("/settings", emailSettingsRouter);
 
 const loginSchema = z.object({
   username: z.string().trim().min(1).max(64),

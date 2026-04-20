@@ -12,7 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { AdminEmailSettings } from "@/pages/admin-email-settings";
 import {
   Inbox,
   LogOut,
@@ -25,6 +27,7 @@ import {
   Calendar,
   ChevronDown,
   ChevronUp,
+  Settings2,
 } from "lucide-react";
 
 type Enquiry = {
@@ -188,10 +191,10 @@ export function AdminDashboard() {
               <Inbox className="w-3.5 h-3.5" /> Admin Console
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
-              Enquiries
+              Dashboard
             </h1>
             <p className="text-muted-foreground mt-2">
-              Signed in as <span className="font-semibold text-foreground">{adminName}</span> · {enquiries.length} total
+              Signed in as <span className="font-semibold text-foreground">{adminName}</span> · {enquiries.length} enquiries total
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -212,6 +215,26 @@ export function AdminDashboard() {
             </Button>
           </div>
         </div>
+
+        <Tabs defaultValue="enquiries" className="w-full">
+          <TabsList className="bg-white border border-card-border rounded-2xl p-1 mb-8 h-auto">
+            <TabsTrigger
+              value="enquiries"
+              className="rounded-xl px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white font-semibold"
+              data-testid="tab-enquiries"
+            >
+              <Inbox className="w-4 h-4 mr-2" /> Enquiries
+            </TabsTrigger>
+            <TabsTrigger
+              value="email"
+              className="rounded-xl px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white font-semibold"
+              data-testid="tab-email"
+            >
+              <Settings2 className="w-4 h-4 mr-2" /> Email Settings
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="enquiries" className="mt-0 focus-visible:outline-none">
 
         {/* Status summary */}
         <div className="grid grid-cols-2 md:grid-cols-6 gap-3 mb-8">
@@ -369,6 +392,12 @@ export function AdminDashboard() {
             })}
           </div>
         )}
+          </TabsContent>
+
+          <TabsContent value="email" className="mt-0 focus-visible:outline-none">
+            <AdminEmailSettings />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
