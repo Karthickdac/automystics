@@ -12,6 +12,7 @@ import { Industries } from "@/pages/industries";
 import { Solutions } from "@/pages/solutions";
 import { Company } from "@/pages/company";
 import { Contact } from "@/pages/contact";
+import { Demo } from "@/pages/demo";
 import { Privacy } from "@/pages/privacy";
 import { Terms } from "@/pages/terms";
 import { AdminLogin } from "@/pages/admin-login";
@@ -51,6 +52,7 @@ function Router() {
         <Route path="/solutions" component={Solutions} />
         <Route path="/company" component={Company} />
         <Route path="/contact" component={Contact} />
+        <Route path="/demo" component={Demo} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
         <Route path="/admin/login" component={AdminLogin} />

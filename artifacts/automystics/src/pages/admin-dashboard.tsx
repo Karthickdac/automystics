@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import { AdminEmailSettings } from "@/pages/admin-email-settings";
 import { AdminSiteSettings } from "@/pages/admin-site-settings";
 import { AdminLocations } from "@/pages/admin-locations";
+import { AdminDemos } from "@/pages/admin-demos";
 import {
   Inbox,
   LogOut,
@@ -32,6 +33,7 @@ import {
   Settings2,
   Phone,
   MapPin,
+  PlayCircle,
 } from "lucide-react";
 
 type Enquiry = {
@@ -250,6 +252,13 @@ export function AdminDashboard() {
             >
               <MapPin className="w-4 h-4 mr-2" /> Locations
             </TabsTrigger>
+            <TabsTrigger
+              value="demos"
+              className="rounded-xl px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white font-semibold"
+              data-testid="tab-demos"
+            >
+              <PlayCircle className="w-4 h-4 mr-2" /> Demos
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="enquiries" className="mt-0 focus-visible:outline-none">
@@ -422,6 +431,10 @@ export function AdminDashboard() {
 
           <TabsContent value="locations" className="mt-0 focus-visible:outline-none">
             <AdminLocations />
+          </TabsContent>
+
+          <TabsContent value="demos" className="mt-0 focus-visible:outline-none">
+            <AdminDemos />
           </TabsContent>
         </Tabs>
       </div>

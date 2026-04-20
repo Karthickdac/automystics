@@ -167,6 +167,14 @@ export function Navbar() {
 
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
+                    <Link href="/demo" className={`group inline-flex h-10 w-max items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${location.startsWith("/demo") ? "bg-primary text-white shadow-lg shadow-primary/40" : "text-white/80"}`} data-testid="nav-demo">
+                      Demo
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
                     <Link href="/contact" className={`group inline-flex h-10 w-max items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white outline-none ${isContact ? "bg-primary text-white shadow-lg shadow-primary/40" : "text-white/80"}`}>
                       Contact Us
                     </Link>
@@ -253,6 +261,10 @@ export function Navbar() {
                       ))}
                     </div>
                   </div>
+
+                  <Link href="/demo" className={`text-lg font-medium transition-colors ${location.startsWith("/demo") ? "text-white" : "text-white/70"}`}>
+                    Demo
+                  </Link>
 
                   <Link href="/contact" className={`text-lg font-medium transition-colors ${isContact ? "text-white" : "text-white/70"}`}>
                     Contact Us
