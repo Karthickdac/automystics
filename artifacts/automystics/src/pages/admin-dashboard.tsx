@@ -16,6 +16,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { AdminEmailSettings } from "@/pages/admin-email-settings";
 import { AdminSiteSettings } from "@/pages/admin-site-settings";
+import { AdminLocations } from "@/pages/admin-locations";
 import {
   Inbox,
   LogOut,
@@ -30,6 +31,7 @@ import {
   ChevronUp,
   Settings2,
   Phone,
+  MapPin,
 } from "lucide-react";
 
 type Enquiry = {
@@ -241,6 +243,13 @@ export function AdminDashboard() {
             >
               <Phone className="w-4 h-4 mr-2" /> Contact Info
             </TabsTrigger>
+            <TabsTrigger
+              value="locations"
+              className="rounded-xl px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white font-semibold"
+              data-testid="tab-locations"
+            >
+              <MapPin className="w-4 h-4 mr-2" /> Locations
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="enquiries" className="mt-0 focus-visible:outline-none">
@@ -409,6 +418,10 @@ export function AdminDashboard() {
 
           <TabsContent value="contact" className="mt-0 focus-visible:outline-none">
             <AdminSiteSettings />
+          </TabsContent>
+
+          <TabsContent value="locations" className="mt-0 focus-visible:outline-none">
+            <AdminLocations />
           </TabsContent>
         </Tabs>
       </div>

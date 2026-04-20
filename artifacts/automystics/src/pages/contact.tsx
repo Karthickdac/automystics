@@ -8,11 +8,13 @@ import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { useSiteSettings, formatAddressLines } from "@/hooks/use-site-settings";
+import { useLocations, formatLocationAddress, LOCATION_TYPE_LABELS } from "@/hooks/use-locations";
 
 export function Contact() {
   const { toast } = useToast();
   const site = useSiteSettings();
-  const addressLines = formatAddressLines(site);
+  const fallbackAddress = formatAddressLines(site);
+  const locations = useLocations();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -187,17 +189,83 @@ export function Contact() {
             </div>
 
             <div className="bg-white border border-card-border shadow-lg rounded-[2.5rem] p-10 card-hover-effect">
-              <h3 className="text-xl font-bold text-foreground mb-8 tracking-tight">Global Headquarters</h3>
-              
-              <div className="space-y-8">
-                <div className="flex items-start gap-5">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-bold mb-2">Office Location</h4>
+              <h3 className="text-xl font-bold text-foreground mb-8 tracking-tight">Email Us</h3>
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                  <Mail className="w-6 h-6 text-primary" />
+                </div>
+                <p className="text-muted-foreground leading-relaxed flex flex-col gap-1">
+                  {site.primaryEmail && (
+                    <a href={`mailto:${site.primaryEmail}`} className="hover:text-primary transition-colors font-semibold" data-testid="contact-primary-email">{site.primaryEmail}</a>
+                  )}
+                  {site.supportEmail && site.supportEmail !== site.primaryEmail && (
+                    <a href={`mailto:${site.supportEmail}`} className="hover:text-primary transition-colors" data-testid="contact-support-email">{site.supportEmail}</a>
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {locations.length > 0 ? (
+              <div className="space-y-4" data-testid="contact-locations">
+                <h3 className="text-xl font-bold text-foreground tracking-tight px-2">Our Offices</h3>
+                {locations.map((loc) => {
+                  const lines = formatLocationAddress(loc);
+                  return (
+                    <div key={loc.id} className="bg-white border border-card-border shadow-lg rounded-[2.5rem] p-8 card-hover-effect" data-testid={`location-${loc.id}`}>
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                          <MapPin className="w-6 h-6 text-primary" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-2">
+                            <h4 className="text-foreground font-bold">{loc.label}</h4>
+                            <span className="text-xs font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+                              {LOCATION_TYPE_LABELS[loc.locationType] || loc.locationType}
+                            </span>
+                          </div>
+                          {lines.length > 0 && (
+                            <p className="text-muted-foreground leading-relaxed text-sm">
+                              {lines.map((line, i) => (
+                                <React.Fragment key={i}>
+                                  {i > 0 && <br />}
+                                  {line}
+                                </React.Fragment>
+                              ))}
+                            </p>
+                          )}
+                          <div className="flex flex-col gap-1 mt-3 text-sm">
+                            {loc.phone && (
+                              <a href={`tel:${loc.phone.replace(/[^+\d]/g, "")}`} className="text-foreground/80 hover:text-primary inline-flex items-center gap-2">
+                                <Phone className="w-3.5 h-3.5" /> {loc.phone}
+                              </a>
+                            )}
+                            {loc.email && (
+                              <a href={`mailto:${loc.email}`} className="text-foreground/80 hover:text-primary inline-flex items-center gap-2">
+                                <Mail className="w-3.5 h-3.5" /> {loc.email}
+                              </a>
+                            )}
+                            {loc.mapUrl && (
+                              <a href={loc.mapUrl} target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:underline inline-flex items-center gap-1 mt-1">
+                                Get directions <ArrowUpRight className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              fallbackAddress.length > 0 && (
+                <div className="bg-white border border-card-border shadow-lg rounded-[2.5rem] p-10 card-hover-effect">
+                  <h3 className="text-xl font-bold text-foreground mb-6 tracking-tight">Office Location</h3>
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                      <MapPin className="w-6 h-6 text-primary" />
+                    </div>
                     <p className="text-muted-foreground leading-relaxed" data-testid="contact-address">
-                      {addressLines.map((line, i) => (
+                      {fallbackAddress.map((line, i) => (
                         <React.Fragment key={i}>
                           {i > 0 && <br />}
                           {line}
@@ -206,25 +274,8 @@ export function Contact() {
                     </p>
                   </div>
                 </div>
-
-                <div className="flex items-start gap-5">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-bold mb-2">Email Us</h4>
-                    <p className="text-muted-foreground leading-relaxed flex flex-col gap-1">
-                      {site.primaryEmail && (
-                        <a href={`mailto:${site.primaryEmail}`} className="hover:text-primary transition-colors" data-testid="contact-primary-email">{site.primaryEmail}</a>
-                      )}
-                      {site.supportEmail && site.supportEmail !== site.primaryEmail && (
-                        <a href={`mailto:${site.supportEmail}`} className="hover:text-primary transition-colors" data-testid="contact-support-email">{site.supportEmail}</a>
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              )
+            )}
           </motion.div>
 
         </div>

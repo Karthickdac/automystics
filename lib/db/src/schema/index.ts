@@ -21,3 +21,4 @@ export * from "./enquiries";
 export * from "./admin-users";
 export * from "./email-settings";
 export * from "./site-settings";
+export * from "./office-locations";

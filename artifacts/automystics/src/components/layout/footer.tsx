@@ -3,10 +3,12 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Twitter, Linkedin, Github, Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
 import { useSiteSettings, formatAddressLines } from "@/hooks/use-site-settings";
+import { useLocations, formatLocationAddress, LOCATION_TYPE_LABELS } from "@/hooks/use-locations";
 
 export function Footer() {
   const site = useSiteSettings();
-  const addressLines = formatAddressLines(site);
+  const locations = useLocations();
+  const fallbackLines = formatAddressLines(site);
   return (
     <footer className="bg-gradient-to-b from-[#111A2E] to-[#0B1426] border-t border-white/5 pt-24 pb-12 relative overflow-hidden">
       <div className="absolute inset-0 dark-grid-pattern opacity-5" />
@@ -81,19 +83,43 @@ export function Footer() {
           <div className="lg:col-span-4 space-y-6">
             <h3 className="text-white font-bold tracking-wide">Contact Us</h3>
             <ul className="space-y-5">
-              <li className="flex items-start gap-4 text-sm text-white/60">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-primary" />
-                </div>
-                <div className="pt-2" data-testid="footer-address">
-                  Global HQ
-                  {addressLines.map((line, i) => (
-                    <React.Fragment key={i}>
-                      <br />{line}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </li>
+              {locations.length > 0 ? (
+                locations.slice(0, 3).map((loc) => {
+                  const lines = formatLocationAddress(loc);
+                  return (
+                    <li key={loc.id} className="flex items-start gap-4 text-sm text-white/60" data-testid={`footer-location-${loc.id}`}>
+                      <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                        <MapPin className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="pt-1.5">
+                        <div className="text-white/90 font-semibold leading-tight">
+                          {loc.label}
+                          <span className="ml-2 text-[10px] uppercase tracking-wider text-primary/80">{LOCATION_TYPE_LABELS[loc.locationType] || loc.locationType}</span>
+                        </div>
+                        {lines.map((line, i) => (
+                          <div key={i} className="leading-snug">{line}</div>
+                        ))}
+                      </div>
+                    </li>
+                  );
+                })
+              ) : (
+                fallbackLines.length > 0 && (
+                  <li className="flex items-start gap-4 text-sm text-white/60">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="pt-2" data-testid="footer-address">
+                      Global HQ
+                      {fallbackLines.map((line, i) => (
+                        <React.Fragment key={i}>
+                          <br />{line}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </li>
+                )
+              )}
               {site.primaryPhone && (
                 <li className="flex items-center gap-4 text-sm text-white/60">
                   <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
