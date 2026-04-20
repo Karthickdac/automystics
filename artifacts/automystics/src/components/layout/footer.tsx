@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Twitter, Linkedin, Github, Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
+import { useSiteSettings, formatAddressLines } from "@/hooks/use-site-settings";
 
 export function Footer() {
+  const site = useSiteSettings();
+  const addressLines = formatAddressLines(site);
   return (
     <footer className="bg-gradient-to-b from-[#111A2E] to-[#0B1426] border-t border-white/5 pt-24 pb-12 relative overflow-hidden">
       <div className="absolute inset-0 dark-grid-pattern opacity-5" />
@@ -82,21 +85,38 @@ export function Footer() {
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
-                <div className="pt-2">Global HQ<br/>123 Innovation Drive<br/>Tech District, CA 94105</div>
-              </li>
-              <li className="flex items-center gap-4 text-sm text-white/60">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                  <Mail className="w-4 h-4 text-primary" />
+                <div className="pt-2" data-testid="footer-address">
+                  Global HQ
+                  {addressLines.map((line, i) => (
+                    <React.Fragment key={i}>
+                      <br />{line}
+                    </React.Fragment>
+                  ))}
                 </div>
-                <a href="mailto:hello@automystics.com" className="hover:text-primary transition-colors pt-1">hello@automystics.com</a>
               </li>
+              {site.primaryPhone && (
+                <li className="flex items-center gap-4 text-sm text-white/60">
+                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4 text-primary" />
+                  </div>
+                  <a href={`tel:${site.primaryPhone.replace(/[^+\d]/g, "")}`} className="hover:text-primary transition-colors pt-1" data-testid="footer-phone">{site.primaryPhone}</a>
+                </li>
+              )}
+              {site.primaryEmail && (
+                <li className="flex items-center gap-4 text-sm text-white/60">
+                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 text-primary" />
+                  </div>
+                  <a href={`mailto:${site.primaryEmail}`} className="hover:text-primary transition-colors pt-1" data-testid="footer-email">{site.primaryEmail}</a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/40">
-            © {new Date().getFullYear()} Automystics Technologies Private Limited. All rights reserved.
+            © {new Date().getFullYear()} {site.companyName}. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-sm text-white/40 hover:text-white transition-colors">Privacy Policy</Link>

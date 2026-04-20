@@ -7,9 +7,12 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { useSiteSettings, formatAddressLines } from "@/hooks/use-site-settings";
 
 export function Contact() {
   const { toast } = useToast();
+  const site = useSiteSettings();
+  const addressLines = formatAddressLines(site);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -43,7 +46,7 @@ export function Contact() {
     } catch (err) {
       toast({
         title: "Could not send your message",
-        description: "Please try again in a moment, or email us directly at hello@automystics.com.",
+        description: `Please try again in a moment, or email us directly at ${site.primaryEmail}.`,
         variant: "destructive",
       });
     } finally {
@@ -173,9 +176,13 @@ export function Contact() {
                 <p className="text-lg text-muted-foreground mb-8">
                   Call us directly to speak with an engineering lead right now.
                 </p>
-                <Button size="lg" variant="outline" className="w-full rounded-full h-14 bg-white border-primary text-primary font-bold text-lg hover:bg-primary hover:text-white transition-all shadow-sm">
-                  <Phone className="w-5 h-5 mr-2" /> +1 (800) 555-0199
-                </Button>
+                {site.primaryPhone && (
+                  <a href={`tel:${site.primaryPhone.replace(/[^+\d]/g, "")}`} className="block">
+                    <Button size="lg" variant="outline" className="w-full rounded-full h-14 bg-white border-primary text-primary font-bold text-lg hover:bg-primary hover:text-white transition-all shadow-sm" data-testid="contact-phone-button">
+                      <Phone className="w-5 h-5 mr-2" /> {site.primaryPhone}
+                    </Button>
+                  </a>
+                )}
               </div>
             </div>
 
@@ -189,7 +196,14 @@ export function Contact() {
                   </div>
                   <div>
                     <h4 className="text-foreground font-bold mb-2">Office Location</h4>
-                    <p className="text-muted-foreground leading-relaxed">123 Innovation Drive<br/>Tech District, CA 94105</p>
+                    <p className="text-muted-foreground leading-relaxed" data-testid="contact-address">
+                      {addressLines.map((line, i) => (
+                        <React.Fragment key={i}>
+                          {i > 0 && <br />}
+                          {line}
+                        </React.Fragment>
+                      ))}
+                    </p>
                   </div>
                 </div>
 
@@ -200,8 +214,12 @@ export function Contact() {
                   <div>
                     <h4 className="text-foreground font-bold mb-2">Email Us</h4>
                     <p className="text-muted-foreground leading-relaxed flex flex-col gap-1">
-                      <a href="mailto:hello@automystics.com" className="hover:text-primary transition-colors">hello@automystics.com</a>
-                      <a href="mailto:support@automystics.com" className="hover:text-primary transition-colors">support@automystics.com</a>
+                      {site.primaryEmail && (
+                        <a href={`mailto:${site.primaryEmail}`} className="hover:text-primary transition-colors" data-testid="contact-primary-email">{site.primaryEmail}</a>
+                      )}
+                      {site.supportEmail && site.supportEmail !== site.primaryEmail && (
+                        <a href={`mailto:${site.supportEmail}`} className="hover:text-primary transition-colors" data-testid="contact-support-email">{site.supportEmail}</a>
+                      )}
                     </p>
                   </div>
                 </div>
