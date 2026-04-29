@@ -1,8 +1,10 @@
+const path = require("path");
+
 module.exports = {
   apps: [
     {
       name: "automystics-api",
-      cwd: "/var/www/automystics/artifacts/api-server",
+      cwd: path.resolve(__dirname, "..", "artifacts", "api-server"),
       script: "dist/index.mjs",
       interpreter: "node",
       // --env-file loads artifacts/api-server/.env at boot (Node >= 20.6)
