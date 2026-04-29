@@ -447,11 +447,17 @@ export function AdminProducts() {
       });
       const json = await res.json();
       if (!res.ok) {
-        throw new Error(
-          json?.error === "key_already_exists"
-            ? "Slug already in use"
-            : json?.error || "Create failed",
-        );
+        if (json?.error === "key_already_exists") {
+          throw new Error("Slug already in use");
+        }
+        if (json?.error === "validation_failed" && json?.issues?.fieldErrors) {
+          const fe = json.issues.fieldErrors as Record<string, string[]>;
+          const msgs = Object.entries(fe)
+            .map(([f, errs]) => `${f}: ${(errs || []).join(", ")}`)
+            .join(" | ");
+          throw new Error(msgs || "Validation failed");
+        }
+        throw new Error(json?.error || "Create failed");
       }
       setItems((arr) => [...arr, json.product]);
       clearProductsCache();
