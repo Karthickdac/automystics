@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "automystics-site",
+      name: "automystics-api",
       cwd: "/var/www/automystics/artifacts/api-server",
       script: "dist/index.mjs",
       interpreter: "node",
