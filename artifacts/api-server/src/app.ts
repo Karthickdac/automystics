@@ -9,6 +9,7 @@ import { pool } from "@workspace/db";
 import router from "./routes";
 import { logger } from "./lib/logger";
 import { ensureDefaultAdmin } from "./lib/seed-admin";
+import { ensureDefaultProducts } from "./lib/seed-products";
 
 const app: Express = express();
 
@@ -92,5 +93,6 @@ if (fs.existsSync(staticDir)) {
 }
 
 void ensureDefaultAdmin();
+void ensureDefaultProducts();
 
 export default app;

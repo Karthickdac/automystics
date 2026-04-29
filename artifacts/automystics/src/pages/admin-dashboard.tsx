@@ -18,6 +18,7 @@ import { AdminEmailSettings } from "@/pages/admin-email-settings";
 import { AdminSiteSettings } from "@/pages/admin-site-settings";
 import { AdminLocations } from "@/pages/admin-locations";
 import { AdminDemos } from "@/pages/admin-demos";
+import { AdminProducts } from "@/pages/admin-products";
 import {
   Inbox,
   LogOut,
@@ -34,6 +35,7 @@ import {
   Phone,
   MapPin,
   PlayCircle,
+  Package,
 } from "lucide-react";
 
 type Enquiry = {
@@ -259,6 +261,13 @@ export function AdminDashboard() {
             >
               <PlayCircle className="w-4 h-4 mr-2" /> Demos
             </TabsTrigger>
+            <TabsTrigger
+              value="products"
+              className="rounded-xl px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white font-semibold"
+              data-testid="tab-products"
+            >
+              <Package className="w-4 h-4 mr-2" /> Products
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="enquiries" className="mt-0 focus-visible:outline-none">
@@ -435,6 +444,10 @@ export function AdminDashboard() {
 
           <TabsContent value="demos" className="mt-0 focus-visible:outline-none">
             <AdminDemos />
+          </TabsContent>
+
+          <TabsContent value="products" className="mt-0 focus-visible:outline-none">
+            <AdminProducts />
           </TabsContent>
         </Tabs>
       </div>

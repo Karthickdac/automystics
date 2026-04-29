@@ -3,10 +3,22 @@ import { SEO } from "@/components/seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell, CheckCircle2, ArrowUpRight, TrendingUp, Users, DollarSign, Activity, AlertCircle, Zap, Database, Shield, HeartPulse, CalendarCheck } from "lucide-react";
+import { Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell, CheckCircle2, ArrowUpRight, TrendingUp, Users, DollarSign, Activity, AlertCircle, Zap, Database, Shield, HeartPulse, CalendarCheck, Package, type LucideIcon } from "lucide-react";
 import { Link } from "wouter";
+import { useProducts, type PublicProduct } from "@/hooks/use-products";
 
-const allProducts = [
+const ICON_MAP: Record<string, LucideIcon> = {
+  Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell,
+  Zap, Database, Shield, HeartPulse, CalendarCheck, Activity, Users,
+  DollarSign, TrendingUp, AlertCircle, Package,
+};
+
+function iconFor(name: string | null | undefined): LucideIcon {
+  if (name && ICON_MAP[name]) return ICON_MAP[name];
+  return Package;
+}
+
+const fallbackProducts = [
   {
     id: "chit-fund",
     title: "Chit Fund Management",
@@ -279,6 +291,32 @@ function ProductPreview({ id }: { id: string }) {
 }
 
 export function Products() {
+  const { products: live, loading } = useProducts();
+  const products: Array<{
+    id: string;
+    title: string;
+    category: string;
+    description: string;
+    icon: LucideIcon;
+    features: string[];
+  }> = (live.length > 0
+    ? live.map((p: PublicProduct) => ({
+        id: p.key,
+        title: p.title,
+        category: p.category ?? "",
+        description: p.description ?? "",
+        icon: iconFor(p.icon),
+        features: p.features ?? [],
+      }))
+    : fallbackProducts.map((p) => ({
+        id: p.id,
+        title: p.title,
+        category: p.category,
+        description: p.description,
+        icon: p.icon,
+        features: p.features,
+      })));
+
   return (
     <div className="bg-transparent relative">
       <SEO 
@@ -310,8 +348,14 @@ export function Products() {
       <div className="py-24 md:py-32 relative z-10 bg-[#D4DBE8]">
         <div className="absolute inset-0 bg-diagonal-pattern opacity-30" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+          {loading && live.length === 0 && (
+            <div className="text-center text-muted-foreground py-10">Loading products…</div>
+          )}
+          {!loading && products.length === 0 && (
+            <div className="text-center text-muted-foreground py-10">No products to show yet.</div>
+          )}
           <div className="space-y-32 md:space-y-48">
-            {allProducts.map((product, index) => (
+            {products.map((product, index) => (
               <motion.div 
                 key={product.id}
                 id={product.id}
