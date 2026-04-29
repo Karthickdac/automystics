@@ -4,10 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Twitter, Linkedin, Github, Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
 import { useSiteSettings, formatAddressLines } from "@/hooks/use-site-settings";
 import { useLocations, formatLocationAddress, LOCATION_TYPE_LABELS } from "@/hooks/use-locations";
+import { useProducts } from "@/hooks/use-products";
+
+const FOOTER_FALLBACK = [
+  { key: "chit-fund", title: "Chit Fund Mgmt" },
+  { key: "kalvicore", title: "KalviCore CMS" },
+  { key: "kural-ai", title: "Kural AI Voice" },
+  { key: "auto-algo", title: "Auto Algo Trading" },
+  { key: "scada", title: "SCADA Monitoring" },
+  { key: "fitro360", title: "Fitro360 Gym Mgmt" },
+];
 
 export function Footer() {
   const site = useSiteSettings();
   const locations = useLocations();
+  const { products: footerProducts } = useProducts();
   const fallbackLines = formatAddressLines(site);
   return (
     <footer className="bg-gradient-to-b from-[#111A2E] to-[#0B1426] border-t border-white/5 pt-24 pb-12 relative overflow-hidden">
@@ -61,12 +72,13 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-6">
             <h3 className="text-white font-bold tracking-wide">Products</h3>
             <ul className="space-y-4">
-              <li><Link href="/products#chit-fund" className="text-sm text-white/60 hover:text-primary transition-colors">Chit Fund Mgmt</Link></li>
-              <li><Link href="/products#kalvicore" className="text-sm text-white/60 hover:text-primary transition-colors">KalviCore CMS</Link></li>
-              <li><Link href="/products#kural-ai" className="text-sm text-white/60 hover:text-primary transition-colors">Kural AI Voice</Link></li>
-              <li><Link href="/products#auto-algo" className="text-sm text-white/60 hover:text-primary transition-colors">Auto Algo Trading</Link></li>
-              <li><Link href="/products#scada" className="text-sm text-white/60 hover:text-primary transition-colors">SCADA Monitoring</Link></li>
-              <li><Link href="/products#fitro360" className="text-sm text-white/60 hover:text-primary transition-colors">Fitro360 Gym Mgmt</Link></li>
+              {(footerProducts.length ? footerProducts : FOOTER_FALLBACK).slice(0, 8).map((p) => (
+                <li key={p.key}>
+                  <Link href={`/products#${p.key}`} className="text-sm text-white/60 hover:text-primary transition-colors">
+                    {p.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

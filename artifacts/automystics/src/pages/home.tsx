@@ -7,10 +7,17 @@ import { motion } from "framer-motion";
 import { 
   Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell,
   Zap, Shield, Clock, ArrowUpRight, CheckCircle2, Factory, Database,
-  Activity, Users, Sparkles, HandCoins, FileSignature, ShieldCheck
+  Activity, Users, Sparkles, HandCoins, FileSignature, ShieldCheck,
+  Package, HeartPulse, CalendarCheck, DollarSign
 } from "lucide-react";
+import { useProducts } from "@/hooks/use-products";
 
-const products = [
+const HOME_ICON_MAP: Record<string, any> = {
+  Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell,
+  Zap, Database, Shield, HeartPulse, CalendarCheck, Activity, Users, DollarSign, Package,
+};
+
+const fallbackProducts = [
   { id: "chit-fund", title: "Chit Fund Management", desc: "Complete transparency for finance companies.", icon: Building2 },
   { id: "kalvicore", title: "KalviCore", desc: "Advanced College Management System.", icon: GraduationCap },
   { id: "kural-ai", title: "Kural AI", desc: "Next-gen intelligent voice automation.", icon: Mic },
@@ -23,6 +30,15 @@ const products = [
 ];
 
 export function Home() {
+  const { products: livePublicProducts } = useProducts();
+  const products = livePublicProducts.length
+    ? livePublicProducts.map((p) => ({
+        id: p.key,
+        title: p.title,
+        desc: p.description ? p.description.slice(0, 80) : (p.category || ""),
+        icon: HOME_ICON_MAP[p.icon || "Package"] || Package,
+      }))
+    : fallbackProducts;
   return (
     <div className="relative">
       <SEO 

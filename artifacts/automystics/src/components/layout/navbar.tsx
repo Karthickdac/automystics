@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Server, Cloud, Smartphone, Paintbrush, Cog, Workflow, Settings, Users, BookOpen, Briefcase, FileText, HeartHandshake, Database, Dumbbell } from "lucide-react";
+import { Menu, ArrowUpRight, Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Server, Cloud, Smartphone, Paintbrush, Cog, Workflow, Settings, Users, BookOpen, Briefcase, FileText, HeartHandshake, Database, Dumbbell, Package, Zap, Shield, HeartPulse, CalendarCheck, Activity, DollarSign } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,6 +11,12 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useProducts } from "@/hooks/use-products";
+
+const PRODUCT_ICON_MAP: Record<string, any> = {
+  Building2, GraduationCap, Mic, LineChart, Sun, Camera, Code, Dumbbell,
+  Zap, Database, Shield, HeartPulse, CalendarCheck, Activity, Users, DollarSign, Package,
+};
 
 const services = [
   { id: "custom-software", title: "Custom Software", desc: "Bespoke enterprise architecture", icon: Code },
@@ -23,7 +29,7 @@ const services = [
   { id: "maintenance", title: "Maintenance", desc: "24/7 support & monitoring", icon: Cog },
 ];
 
-const products = [
+const fallbackProducts = [
   { id: "chit-fund", title: "Chit Fund Management", desc: "Digital platform for finance", icon: Building2 },
   { id: "school-management", title: "School Management", desc: "End-to-end administration", icon: GraduationCap },
   { id: "kalvicore", title: "KalviCore", desc: "Advanced College Management", icon: GraduationCap },
@@ -92,6 +98,15 @@ export function Navbar() {
   const [location] = useLocation();
   const isHome = location === "/";
   const isContact = location === "/contact";
+  const { products: livePublicProducts } = useProducts();
+  const products = livePublicProducts.length
+    ? livePublicProducts.map((p) => ({
+        id: p.key,
+        title: p.title,
+        desc: p.category || (p.description ? p.description.slice(0, 60) : ""),
+        icon: PRODUCT_ICON_MAP[p.icon || "Package"] || Package,
+      }))
+    : fallbackProducts;
 
   const triggerClass = (path: string) => {
     const active = location === path || location.startsWith(path + "/");
