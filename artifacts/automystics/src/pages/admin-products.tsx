@@ -113,14 +113,26 @@ function FeatureEditor({
   );
 }
 
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9-]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 64);
+}
+
 function FormGrid({
   data,
   onChange,
   idPrefix,
+  autoSlugFromTitle,
 }: {
   data: Omit<Product, "id">;
   onChange: (p: Partial<Product>) => void;
   idPrefix: string;
+  autoSlugFromTitle?: boolean;
 }) {
   return (
     <div className="grid md:grid-cols-2 gap-4">
@@ -128,20 +140,27 @@ function FormGrid({
         <Label className="font-semibold">Slug / Key *</Label>
         <Input
           value={data.key}
-          onChange={(e) => onChange({ key: e.target.value })}
+          onChange={(e) => onChange({ key: slugify(e.target.value) })}
           placeholder="kalvicore"
           className="bg-white border-card-border h-11 rounded-xl"
           data-testid={`${idPrefix}-key`}
         />
         <p className="text-xs text-muted-foreground">
-          Lowercase, dashes only. Used for routes and previews.
+          Auto-formatted: lowercase letters, numbers, and dashes only. Used for routes.
         </p>
       </div>
       <div className="space-y-2">
         <Label className="font-semibold">Title *</Label>
         <Input
           value={data.title}
-          onChange={(e) => onChange({ title: e.target.value })}
+          onChange={(e) => {
+            const title = e.target.value;
+            const patch: Partial<Product> = { title };
+            if (autoSlugFromTitle && (!data.key || data.key === slugify(data.title))) {
+              patch.key = slugify(title);
+            }
+            onChange(patch);
+          }}
           placeholder="KalviCore"
           className="bg-white border-card-border h-11 rounded-xl"
           data-testid={`${idPrefix}-title`}
@@ -511,6 +530,7 @@ export function AdminProducts() {
             data={draft}
             onChange={(p) => setDraft({ ...draft, ...p })}
             idPrefix="new-product"
+            autoSlugFromTitle
           />
           <div className="flex justify-end gap-3">
             <Button
